@@ -1,0 +1,304 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8" />
+    <title>将Linux移植到新的设备 | 清风之恋の小窝</title>
+    <meta name="author" content="清风之恋" />
+    <meta name="description" content="ええ...?被找到了呢,这里会不定期更新一些好玩的东西哦" />
+    <meta name="keywords" content="清风之恋,aurora0x27,aurora" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/nachoneko.png" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>清风之恋の小窝</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;清风之恋の小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>将Linux移植到新的设备</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/8/4
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/Linux/" style="color: #ffa2c4">
+                    Linux
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%8A%98%E8%85%BE%E8%AE%B0/" style="color: #03a9f4">
+                    折腾记
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>我的一次系统移植(升级)</p>
+<span id="more"></span>
+
+<p>约莫是今年二月份的时间, 我一时冲动, 拿了一台2017年产的联想二手笔记本安装了ArchLinux, 原本只是打算装Linux只是玩一玩,<br>但是后来逐渐变成了主力机(真香), 随着开发和其他需求的增加, 原本的4核处理器, 8G内存和256G的磁盘空间就显得有点太憋屈了.<br>于是在今年暑假, 我换了一台thinkbook14, 拥有了16G&#x2F;2T的配置. 接下来的工作就是把系统迁移进入新的硬件</p>
+<p><img src="/../images/moveLinuxToNewDevice/hardwareInfo.png" alt="hardware info"></p>
+<h2 id="1-备份操作系统"><a href="#1-备份操作系统" class="headerlink" title="1. 备份操作系统"></a>1. 备份操作系统</h2><p>移植过程中会大量使用<code>root</code>权限, 因此为了避免操作失误造成不可逆的后果, 需要进行备份.</p>
+<blockquote>
+<p>Warning<br>此处需要注意文件系统的一致性, 我早些时候使用的是老的<code>ntfs</code>移动硬盘进行备份, 最后造成硬盘损坏, 无法进行自动的挂载.<br>在Windows下修复无果之后只能重新格式化</p>
+</blockquote>
+<pre><code class="highlight bash"><span class="built_in">sudo</span> rsync -aAXHv --exclude=<span class="string">&#x27;/dev/*&#x27;</span> --exclude=<span class="string">&#x27;/proc/*&#x27;</span> --exclude=<span class="string">&#x27;/sys/*&#x27;</span> --exclude=<span class="string">&#x27;/tmp/*&#x27;</span> --exclude=<span class="string">&#x27;/run/*&#x27;</span> --exclude=<span class="string">&#x27;/mnt/*&#x27;</span> --exclude=<span class="string">&#x27;/media/*&#x27;</span> --exclude=<span class="string">&#x27;/lost+found/&#x27;</span> / /your_backup_dir</code></pre>
+
+<h2 id="2-制作安装盘"><a href="#2-制作安装盘" class="headerlink" title="2. 制作安装盘"></a>2. 制作安装盘</h2><p>移植操作系统的主要思路主要有两种, 即自上而下和自下而上, 这里推荐<a target="_blank" rel="noopener" href="https://wiki.archlinuxcn.org/wiki/%E8%BF%81%E7%A7%BB%E5%88%B0%E6%96%B0%E7%A1%AC%E4%BB%B6">一篇Wiki</a>. 我这次主要采用的是自上而下的思路.<br>首先将操作系统和其中用户的文件一并移植进入U盘, 成为移动的启动U盘, 再将U盘中的系统移植进入新电脑的硬盘.</p>
+<h3 id="2-1-制作启动U盘"><a href="#2-1-制作启动U盘" class="headerlink" title="2.1 制作启动U盘:"></a>2.1 制作启动U盘:</h3><ul>
+<li><p>先准备一个移动储存介质(可以是U盘或者移动硬盘), 其容量大小需要大于旧电脑医用空间的大小.</p>
+</li>
+<li><p>记下旧电脑文件系统信息: <code>lsblk -f</code></p>
+</li>
+<li><p>备份U盘中的文件后, <code>sudo fdisk /dev/sda</code> 进行重新分区:</p>
+<ul>
+<li><p>按<code>m</code>打印帮助信息</p>
+</li>
+<li><p>首先抹除原有分区信息<code>d</code>指令, 一直回车, 直到输入<code>p</code>指令得到没有分区的结果</p>
+</li>
+<li><p><code>n</code>创建新的分区, 第一分区较小, 将来会作为引导分区, 挂载 <code>/boot</code>目录, 另一个则是根分区. <em><strong>这里两个分区的分区类型, 第一分区是<code>EFI System</code>, 第二分区则是默认的<code>Linux</code></strong></em></p>
+</li>
+</ul>
+<p>  <img src="/../images/moveLinuxToNewDevice/systemDiskParts.png" alt="现在系统的分区情况"></p>
+<ul>
+<li><code>w</code>指令将分区信息写入磁盘</li>
+</ul>
+</li>
+<li><p>进行格式化操作<code>sudo mkfs.vfat /dev/sda1</code>, 第一分区是引导分区, 于我来说是<code>vfat</code>文件系统, 你应当填入对应的引导分区文件系统类型.<br><code>sudo mkfs.ext4 /dev/sda2</code>, 为第二分区写入系统的文件系统, 这里也需要填写和你系统对应的文件系统类型</p>
+</li>
+<li><p>这时再<code>lsblk -f</code>, 就会看到U盘被分为了两个分区. <em><strong>记下出现的<code>UUID</code>!!一会要考!!</strong></em> <code>sudo mount /dev/sda1 /run/media/usrname/</code> 首先挂载第一分区, <code>sudo rsync -aAXHv /boot/* /run/media/usrname</code>, 将<code>/boot/</code>目录下的文件拷贝到引导分区内, 修改其中的<code>/grub/grub.cfg</code>, 将里面所有旧的<code>UUID</code>替换成新的, 这保证引导程序按着<code>UUID</code>能正确的找到根文件系统所在的设备. 最后<code>sudo umount /run/media/usrname</code>, 解挂载第一分区.</p>
+</li>
+<li><p>然后使用相同的手法完全的克隆整个根目录到第二分区, 修改<code>/bost/grub/grub.cfg</code>, <code>/etc/fstab</code>. 也是替换<code>UUID</code>, 后者是系统加载时负责配置目录挂载过程的配置文件. 最后要解挂载.</p>
+</li>
+</ul>
+<h3 id="2-2-移植到新电脑"><a href="#2-2-移植到新电脑" class="headerlink" title="2.2 移植到新电脑"></a>2.2 移植到新电脑</h3><p>现在就可以插在新电脑上了. 但是在进行系统的移植之前, 需要解除电脑的<code>security boot</code>, 这是一种保护电脑, 不允许从外部USB设备启动的机制. 在开机上电, 快要出现品牌徽标前不断的按<code>F2</code>键 <em>因电脑被型号而异, 值得一试的有<code>F1, F2, F12</code>等</em>, 进入设置, 关闭<code>security boot</code>, 然后重启, 用相同的手法进入选择从何设备启动的界面 <em>于我来说是<code>F12</code>, 也因电脑型号而异.</em>, 选择从U盘启动, 只需要利用这个U盘里面的系统对电脑里的硬盘做相同的分区, 格式化, 拷贝和修改文件操作就行了.</p>
+<p>Tips:</p>
+<ul>
+<li><p>这里可以尝试新的分区方式, 比如将home单独放在一个分区; 或者像我一样, 电脑里两块硬盘, 一块做根分区, 另一块作为数据盘挂在<code>~/Data</code>下.</p>
+</li>
+<li><p>修改分区方式是在刚刚开始进行重新分区格式化时进行, 之后需要修改 <code>/etc/fstab</code>, 使之挂载到对应的位置</p>
+</li>
+</ul>
+<p><img src="/../images/moveLinuxToNewDevice/my_fstab_file.png" alt="my_fstab_file"></p>
+<ul>
+<li>上图就是我的<code>/etc/fstab</code>, 从上到下分别是根分区, 引导分区和自己划定的数据分区. 其实要挂载其他的分区很简单, 其他的参数不用管, 只需要在对应的位置填写挂在位置和<code>UUID</code>即可, 其他的和上面我自己的<code>~/Data</code>分区保持一致即可</li>
+</ul>
+<h2 id="3-事后处理"><a href="#3-事后处理" class="headerlink" title="3. 事后处理"></a>3. 事后处理</h2><p>能够走到这一步, 那么移植系统已经算成功一半了, 有时重头戏可能会是事后处理部分. 因为旧电脑的系统配置很可能不适应新电脑的硬件.</p>
+<p>我遇到的第一个问题的分辨率问题, 我的旧电脑分辨率只有 $1360 \times 768$ , 但是新电脑却高达 $2880 \times 1800$, 导致UI过小. 由于我是KDE桌面, 可以直接通过<strong>设置&gt;&gt;显示和监视器&gt;&gt;显示器配置</strong>进行设置缩放率</p>
+<p><img src="/../images/moveLinuxToNewDevice/resolution_settings.png" alt="resolution_settings"></p>
+<p>但是我始终没有解决的一个问题是SDDM登陆界面的UI显示过小, 虽然也尝试过按照网上的教程去修改配置文件, 但是SDDM始终没有变化(只是输个密码, 其实只是好不好看而已, 所以就没再改了) </p>
+<p>第二个问题则是声卡, 开始时这台电脑根本发不出一点声音. 于是我检查了声卡的硬件信息 <code>lspci -k | grep media</code></p>
+<p><img src="/../images/moveLinuxToNewDevice/media_dirver_info.png" alt="media_driver_info"></p>
+<p>进一步发现声卡驱动没有安装. 然后在ArchWiki上搜索, 很幸运的发现了<a target="_blank" rel="noopener" href="https://bbs.archlinuxcn.org/viewtopic.php?id=10479">解决方案</a>, 把对应的驱动装上, 重启就自动好了</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2024 - 2024 清风之恋の小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;清风之恋
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>
