@@ -1,0 +1,536 @@
+<!DOCTYPE html><html dir="ltr" lang="zh-Hans" class="scroll-smooth" data-astro-cid-sckkx6r4> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.ico"><link rel="canonical" href="https://aurora0x27.github.io/posts/nvimconfigfromscratch1/"><meta name="generator" content="Astro v5.12.0"><!-- General Meta Tags --><title>從零開始的 neovim 配置 | 清風之戀の空想森林</title><meta name="title" content="從零開始的 neovim 配置 | 清風之戀の空想森林"><meta name="description" content="新手向 Nvim 配置教程 -- 配置架構和插件管理"><meta name="author" content="aurora0x27"><link rel="sitemap" href="/sitemap-index.xml"><!-- Open Graph / Facebook --><meta property="og:title" content="從零開始的 neovim 配置 | 清風之戀の空想森林"><meta property="og:description" content="新手向 Nvim 配置教程 -- 配置架構和插件管理"><meta property="og:url" content="https://aurora0x27.github.io/posts/nvimconfigfromscratch1/"><meta property="og:image" content="https://aurora0x27.github.io/astropaper-og.jpg"><!-- Article Published/Modified time --><meta property="article:published_time" content="2025-05-14T00:11:30.000Z"><meta property="article:modified_time" content="2025-05-14T00:11:30.000Z"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://aurora0x27.github.io/posts/nvimconfigfromscratch1/"><meta property="twitter:title" content="從零開始的 neovim 配置 | 清風之戀の空想森林"><meta property="twitter:description" content="新手向 Nvim 配置教程 -- 配置架構和插件管理"><meta property="twitter:image" content="https://aurora0x27.github.io/astropaper-og.jpg"><!-- Google JSON-LD Structured data --><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"從零開始的 neovim 配置 | 清風之戀の空想森林","image":"https://aurora0x27.github.io/astropaper-og.jpg","datePublished":"2025-05-14T00:11:30.000Z","dateModified":"2025-05-14T00:11:30.000Z","author":[{"@type":"Person","name":"aurora0x27","url":"https://aurora0x27.github.io/"}]}</script><!-- Enable RSS feed auto-discovery  --><!-- https://docs.astro.build/en/recipes/rss/#enabling-rss-feed-auto-discovery --><link rel="alternate" type="application/rss+xml" title="清風之戀の空想森林" href="https://aurora0x27.github.io/rss.xml"><meta name="theme-color" content=""><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.D98dxaWf.js"></script><script src="/toggle-theme.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css"><link rel="stylesheet" href="/_astro/about.CieeIWNO.css">
+<style>@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media (prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+.toc[data-astro-cid-6t6zfk7k] a[data-astro-cid-6t6zfk7k]{padding:2px 4px;border-radius:4px;transition:all .2s ease;display:inline-block}.toc[data-astro-cid-6t6zfk7k] a[data-astro-cid-6t6zfk7k]:hover{color:var(--color-accent)}.toc[data-astro-cid-6t6zfk7k] a[data-astro-cid-6t6zfk7k].active{background-color:var(--color-muted)}
+:where([data-astro-image]){object-fit:var(--fit);object-position:var(--pos);height:auto}:where([data-astro-image=full-width]){width:100%}:where([data-astro-image=constrained]){max-width:100%}
+</style><style>[data-astro-transition-scope="astro-pfiegbw7-1"] { view-transition-name: \5F9E\96F6\958B\59CB\7684-neovim-\914D\7F6E; }@layer astro { ::view-transition-old(\5F9E\96F6\958B\59CB\7684-neovim-\914D\7F6E) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(\5F9E\96F6\958B\59CB\7684-neovim-\914D\7F6E) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(\5F9E\96F6\958B\59CB\7684-neovim-\914D\7F6E) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(\5F9E\96F6\958B\59CB\7684-neovim-\914D\7F6E) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-pfiegbw7-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-pfiegbw7-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-pfiegbw7-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-pfiegbw7-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-pfiegbw7-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-pfiegbw7-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-pfiegbw7-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-pfiegbw7-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-2"] { view-transition-name: \6298\9A30\8A18; }@layer astro { ::view-transition-old(\6298\9A30\8A18) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(\6298\9A30\8A18) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(\6298\9A30\8A18) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(\6298\9A30\8A18) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-3"] { view-transition-name: \6559\7A0B; }@layer astro { ::view-transition-old(\6559\7A0B) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(\6559\7A0B) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(\6559\7A0B) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(\6559\7A0B) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-4"] { view-transition-name: neovim; }@layer astro { ::view-transition-old(neovim) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(neovim) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(neovim) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(neovim) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body data-astro-cid-sckkx6r4>  <header> <a id="skip-to-content" href="#main-content" class="absolute start-16 -top-full z-50 bg-background px-3 py-2 text-accent backdrop-blur-lg transition-all focus:top-4">
+Skip to content
+</a> <div id="nav-container" class="mx-auto flex max-w-app flex-col items-center justify-between sm:flex-row"> <div id="top-nav-wrap" class="relative flex w-full items-baseline justify-between bg-background p-4 sm:items-center sm:py-6"> <a href="/" class="absolute py-1 text-xl leading-8 font-semibold whitespace-nowrap sm:static sm:my-auto sm:text-2xl sm:leading-none"> 清風之戀の空想森林 </a> <nav id="nav-menu" class="flex w-full flex-col items-center sm:ms-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0"> <button id="menu-btn" class="focus-outline self-end p-2 sm:hidden" aria-label="Open Menu" aria-expanded="false" aria-controls="menu-items"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden" id="close-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-deep" id="menu-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6h16" /><path d="M7 12h13" /><path d="M10 18h10" /></svg> </button> <ul id="menu-items" class="mt-4 grid w-44 grid-cols-2 place-content-center gap-2 [&#38;>li>a]:block [&#38;>li>a]:px-4 [&#38;>li>a]:py-3 [&#38;>li>a]:text-center [&#38;>li>a]:font-medium [&#38;>li>a]:hover:text-accent sm:[&#38;>li>a]:px-2 sm:[&#38;>li>a]:py-1 hidden sm:mt-0 sm:flex sm:w-auto sm:gap-x-5 sm:gap-y-0"> <li class="col-span-2"> <a href="/posts" class="active-nav">
+Posts
+</a> </li> <li class="col-span-2"> <a href="/tags">
+Tags
+</a> </li> <li class="col-span-2"> <a href="/about">
+About
+</a> </li> <li class="col-span-2"> <a href="/archives" class="group inline-block hover:text-accent focus-outline flex justify-center p-3 sm:p-1" aria-label="archives" title="Archives"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden sm:inline-block"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" /><path d="M10 12l4 0" /></svg> <span class="sm:sr-only">Archives</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <a href="/search" class="group inline-block hover:text-accent focus-outline flex p-3 sm:p-1" aria-label="search" title="Search"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg> <span class="sr-only">Search</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <button id="theme-btn" class="focus-outline relative size-12 p-4 sm:size-8 hover:[&>svg]:stroke-accent" title="Toggles light & dark" aria-label="auto" aria-live="polite"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" /><path d="M6.343 17.657l-1.414 1.414" /><path d="M6.343 6.343l-1.414 -1.414" /><path d="M17.657 6.343l1.414 -1.414" /><path d="M17.657 17.657l1.414 1.414" /><path d="M4 12h-2" /><path d="M12 4v-2" /><path d="M20 12h2" /><path d="M12 20v2" /></svg> </button> </li> </ul> </nav> </div> </div> <div class="mx-auto max-w-app px-4"> <hr class="border-border" aria-hidden="true"> </div> </header> <script type="module">function s(){const e=document.querySelector("#menu-btn"),t=document.querySelector("#menu-items"),n=document.querySelector("#menu-icon"),o=document.querySelector("#close-icon");!e||!t||!n||!o||e.addEventListener("click",()=>{const c=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",c?"false":"true"),e.setAttribute("aria-label",c?"Open Menu":"Close Menu"),t.classList.toggle("hidden"),n.classList.toggle("hidden"),o.classList.toggle("hidden")})}s();document.addEventListener("astro:after-swap",s);</script> <div class="mx-auto flex w-full max-w-app items-center justify-start px-2"><a id="back-button" href="/" class="group inline-block hover:text-accent focus-outline mt-8 mb-2 flex hover:text-foreground/75"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 rtl:rotate-180"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg><span>Go back</span></a></div><script type="module">function o(){const t=document.querySelector("#back-button"),e=sessionStorage.getItem("backUrl");e&&t&&(t.href=e)}document.addEventListener("astro:page-load",o);o();</script> <!-- mobile TOC -->
+  <div class="toc-mobile xl:hidden mx-auto w-full max-w-4xl px-4 mb-6 mt-4"> <details class="bg-background rounded-lg p-4 border"> <summary class="cursor-pointer font-medium text-foreground">
+Table of Contents
+</summary> <div class="mt-3"> <!-- Root component: renders the entire TOC -->
+  <nav class="toc" data-astro-cid-6t6zfk7k><ul data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#配置架构" data-astro-cid-6t6zfk7k>配置架构</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#部分插件配置" data-astro-cid-6t6zfk7k>部分插件配置</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#文件樹" data-astro-cid-6t6zfk7k>文件樹</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#模糊搜索" data-astro-cid-6t6zfk7k>模糊搜索</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#git-提示" data-astro-cid-6t6zfk7k>git 提示</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#markdown-渲染" data-astro-cid-6t6zfk7k>Markdown 渲染</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#輸入法切換" data-astro-cid-6t6zfk7k>輸入法切換</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#內置終端" data-astro-cid-6t6zfk7k>內置終端</a></li></ul></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#关于lazy" data-astro-cid-6t6zfk7k>关于Lazy</a></li></ul></nav><script type="module">let n;function h(){n&&n();const a=document.querySelectorAll('.toc a[href^="#"]'),o=new Map;a.forEach(e=>{const t=e.getAttribute("href");t&&o.set(t.slice(1),e)});const r=Array.from(document.querySelectorAll("h2, h3, h4, h5, h6")).filter(e=>e.id&&o.has(e.id));if(r.length===0||o.size===0)return;let i=null;const s=new IntersectionObserver(e=>{e.forEach(t=>{const l=t.target.id,c=o.get(l);t.isIntersecting&&t.intersectionRatio>=1&&(i&&i.classList.remove("active"),c?.classList.add("active"),i=c)})},{rootMargin:"-100px 0px -50% 0px",threshold:1});r.forEach(e=>s.observe(e)),n=()=>{console.log("Cleaning up observers for the previous page."),r.forEach(e=>s.unobserve(e))}}document.addEventListener("astro:page-load",h,{once:!1});</script> </div> </details> </div>
+  <!-- desktop TOC -->
+  <div class="toc-desktop hidden xl:block fixed top-24 z-10" style="left: calc(50% + min(26rem, 50vw) + 1rem); width: 15rem; max-height: calc(100vh - 15rem); overflow-y: auto;"> <div class="bg-background rounded-md p-4 shadow-sm"> <h3 class="text-sm font-semibold text-foreground mb-2 pb-2 border-b">
+Table of Contents
+</h3> <div class="text-sm"> <!-- Root component: renders the entire TOC -->
+  <nav class="toc" data-astro-cid-6t6zfk7k><ul data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#配置架构" data-astro-cid-6t6zfk7k>配置架构</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#部分插件配置" data-astro-cid-6t6zfk7k>部分插件配置</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#文件樹" data-astro-cid-6t6zfk7k>文件樹</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#模糊搜索" data-astro-cid-6t6zfk7k>模糊搜索</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#git-提示" data-astro-cid-6t6zfk7k>git 提示</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#markdown-渲染" data-astro-cid-6t6zfk7k>Markdown 渲染</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#輸入法切換" data-astro-cid-6t6zfk7k>輸入法切換</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#內置終端" data-astro-cid-6t6zfk7k>內置終端</a></li></ul></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#关于lazy" data-astro-cid-6t6zfk7k>关于Lazy</a></li></ul></nav> </div> </div> </div><main id="main-content" class="mx-auto w-full max-w-app px-4 pb-12" data-pagefind-body> <h1 class="inline-block text-2xl font-bold text-accent sm:text-3xl" data-astro-transition-scope="astro-pfiegbw7-1"> 從零開始的 neovim 配置 </h1> <div class="my-2 flex items-center gap-2"> <div class="flex items-center gap-x-2 opacity-80"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 min-w-[1.375rem]"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M7 14h.013" /><path d="M10.01 14h.005" /><path d="M13.01 14h.005" /><path d="M16.015 14h.005" /><path d="M13.015 17h.005" /><path d="M7.01 17h.005" /><path d="M10.01 17h.005" /></svg>  <time class="text-sm sm:text-base" datetime="2025-05-14T00:11:30.000Z">14 May, 2025</time> </div> <span aria-hidden="true" class="max-sm:hidden hidden">|</span>  </div> <article id="article" class="app-prose mx-auto mt-8 max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"> <p>本文介紹清風之戀的 neovim 配置架構, 以及如何使用 Lazy 插件管理器</p>
+<h2 id="配置架构">配置架构</h2>
+<p>我的配置架構如下</p>
+<pre class="astro-code astro-code-themes catppuccin-latte catppuccin-mocha" style="--shiki-light:#4c4f69;--shiki-dark:#cdd6f4;--shiki-light-bg:#eff1f5;--shiki-dark-bg:#1e1e2e; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> ftplugin</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> --</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> 加載特定類型的文件補丁選項</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">   ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> css.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">   ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> javascript.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">   ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> json.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">   ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> make.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">   ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> scss.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">   ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> typescript.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">   └──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> typescriptreact.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> init.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> lazy-lock.json</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> lsp</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> --</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> lsp</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> 配置</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">   ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> clangd.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">   ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> clice.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">   ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> lua_ls.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">   ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> neocmake.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">   ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> pyright.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">   └──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> rust_analyzer.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">   ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> config</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> --</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> 自己編寫的模塊,</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> 也許應該叫</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5"> `</span><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">module</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">`</span><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic"> ?</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">   │</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">   ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> autocmd.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">   │</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">   ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> diagnostics.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">   │</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">   ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> keymaps.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">   │</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">   ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> lsp.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">   │</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">   ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> options.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">   │</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">   ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> pairs.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">   │</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">   ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> preload.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">   │</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">   └──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> ssh_mode.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">   └──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> plugins</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> --</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> 插件配置</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">       ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> blankline.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">       ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> blinkcmp.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">       ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> color-preview.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">       ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> colorscheme.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">       ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> comment.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">       ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> dashboard.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">       ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> explorer.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">       ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> format.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">       ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> gitsigns.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">       ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> heirline.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">       ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> icons.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">       ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> im-switch.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">       ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> layout.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">       ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> lsp-installer.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">       ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> markdown.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">       ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> noice.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">       ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> notify.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">       ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> outline.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">       ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> tabline.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">       ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> telescope.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">       ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> terminal.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">       ├──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> tree-sitter.lua</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">│</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">       └──</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> which-key.lua</span></span>
+<span class="line"><span style="--shiki-light:#D20F39;--shiki-light-font-style:italic;--shiki-dark:#F38BA8;--shiki-dark-font-style:italic">...</span></span></code></pre>
+<h2 id="部分插件配置">部分插件配置</h2>
+<h3 id="文件樹">文件樹</h3>
+<p>採用<a href="https://github.com/nvim-neo-tree/neo-tree.nvim">neo-tree</a>實現，可以使用<code>tab</code>鍵切換查看開啟的 buffer 位置以及 git 狀態</p>
+<pre class="astro-code astro-code-themes catppuccin-latte catppuccin-mocha" style="--shiki-light:#4c4f69;--shiki-dark:#cdd6f4;--shiki-light-bg:#eff1f5;--shiki-dark-bg:#1e1e2e; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="lua"><code><span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">close_if_last_window </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#D20F39;--shiki-dark:#F38BA8"> true</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">, </span><span style="--shiki-light:#7C7F93;--shiki-light-font-style:italic;--shiki-dark:#9399B2;--shiki-dark-font-style:italic">-- NOTE: 这里设置防止关闭所有 buffer 之后只剩下 neo-tree</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">enable_git_status </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#D20F39;--shiki-dark:#F38BA8"> true</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">,</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">enable_diagnostics </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#D20F39;--shiki-dark:#F38BA8"> true</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">,</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">sources </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> { </span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">'filesystem'</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">, </span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">'buffers'</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">, </span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">'git_status' </span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">},</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">source_selector </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> {</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">    winbar </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#D20F39;--shiki-dark:#F38BA8"> true</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">,</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">    statusline </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#D20F39;--shiki-dark:#F38BA8"> false</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">,</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">    show_separator_on_edge </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#D20F39;--shiki-dark:#F38BA8"> true</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">,</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">    separator </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> { left </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> ' '</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">, right </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> '' </span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">},</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">    sources </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> {</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">        { source </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> 'filesystem'</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">, display_name </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> ' 󰉓 Files' </span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">},</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">        { source </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> 'buffers'</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">, display_name </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> ' 󰈙 Buf' </span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">},</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">        { source </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> 'git_status'</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">, display_name </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> '󰊢 Git ' </span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">},</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">    },</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">},</span></span>
+<span class="line"></span></code></pre>
+<p>在退出 buffer 的時候 <code>close_if_last_window</code> 設定可能導致關閉 buffer 的時候 neovim 立即退出. 因此需要將關閉單個 buffer
+的鍵位進行映射:</p>
+<pre class="astro-code astro-code-themes catppuccin-latte catppuccin-mocha" style="--shiki-light:#4c4f69;--shiki-dark:#cdd6f4;--shiki-light-bg:#eff1f5;--shiki-dark-bg:#1e1e2e; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="lua"><code><span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">vim.keymap.</span><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">set</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">(</span></span>
+<span class="line"><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">    'n'</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">,</span></span>
+<span class="line"><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">    '&#x3C;Leader>bc'</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">,</span></span>
+<span class="line"><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">    '&#x3C;cmd>bp | bd #&#x3C;CR>'</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">,</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">    { desc </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> 'Buffer close current'</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">, noremap </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#D20F39;--shiki-dark:#F38BA8"> true</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">, silent </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#D20F39;--shiki-dark:#F38BA8"> true</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> }</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">)</span></span></code></pre>
+<p>其他替換插件: <a href="https://github.com/folke/snacks.nvim/blob/main/docs/explorer.md">snacks.explorer</a>, <a href="https://github.com/nvim-tree/nvim-tree.lua">nvim-tree</a></p>
+<h3 id="模糊搜索">模糊搜索</h3>
+<p>我使用的是幾乎默認的 <a href="https://github.com/nvim-telescope/telescope.nvim"><code>Telescope</code></a> , 主要的配置都在 <code>keymap.lua</code> 裡面. Telescope 有個痛點,
+就是無法讓廣播聚焦到右側的預覽區域. 對此我去 stack over flow 上面找了個片段</p>
+<pre class="astro-code astro-code-themes catppuccin-latte catppuccin-mocha" style="--shiki-light:#4c4f69;--shiki-dark:#cdd6f4;--shiki-light-bg:#eff1f5;--shiki-dark-bg:#1e1e2e; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="lua"><code><span class="line"><span style="--shiki-light:#7C7F93;--shiki-light-font-style:italic;--shiki-dark:#9399B2;--shiki-dark-font-style:italic">-- Fuzzy finder</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#8839EF;--shiki-dark:#CBA6F7">local</span><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic"> focus_preview</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5"> =</span><span style="--shiki-light:#8839EF;--shiki-dark:#CBA6F7"> function</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">(</span><span style="--shiki-light:#E64553;--shiki-light-font-style:italic;--shiki-dark:#EBA0AC;--shiki-dark-font-style:italic">prompt_bufnr</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">)</span></span>
+<span class="line"><span style="--shiki-light:#8839EF;--shiki-dark:#CBA6F7">    local</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> action_state </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic"> require</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> 'telescope.actions.state'</span></span>
+<span class="line"><span style="--shiki-light:#8839EF;--shiki-dark:#CBA6F7">    local</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> picker </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> action_state.</span><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">get_current_picker</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">(prompt_bufnr)</span></span>
+<span class="line"><span style="--shiki-light:#8839EF;--shiki-dark:#CBA6F7">    local</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> prompt_win </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> picker.prompt_win</span></span>
+<span class="line"><span style="--shiki-light:#8839EF;--shiki-dark:#CBA6F7">    local</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> previewer </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> picker.previewer</span></span>
+<span class="line"><span style="--shiki-light:#8839EF;--shiki-dark:#CBA6F7">    local</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> bufnr </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> previewer.state.bufnr </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">or</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> previewer.state.termopen_bufnr</span></span>
+<span class="line"><span style="--shiki-light:#8839EF;--shiki-dark:#CBA6F7">    local</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> winid </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> previewer.state.winid </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">or</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> vim.fn.</span><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">win_findbuf</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">(bufnr)[</span><span style="--shiki-light:#FE640B;--shiki-dark:#FAB387">1</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">]</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">    vim.keymap.</span><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">set</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">({ </span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">'n'</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">, </span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">'i' </span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">}, </span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">'&#x3C;C-l>'</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">, </span><span style="--shiki-light:#8839EF;--shiki-dark:#CBA6F7">function</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">()</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">        vim.</span><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">cmd</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">(</span><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">string.format</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">(</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">'noautocmd lua vim.api.nvim_set_current_win(%s)'</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">, prompt_win))</span></span>
+<span class="line"><span style="--shiki-light:#8839EF;--shiki-dark:#CBA6F7">    end</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">, { buffer </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> bufnr })</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">    vim.</span><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">cmd</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">(</span><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">string.format</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">(</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">'noautocmd lua vim.api.nvim_set_current_win(%s)'</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">, winid))</span></span>
+<span class="line"><span style="--shiki-light:#7C7F93;--shiki-light-font-style:italic;--shiki-dark:#9399B2;--shiki-dark-font-style:italic">    -- api.nvim_set_current_win(winid)</span></span>
+<span class="line"><span style="--shiki-light:#8839EF;--shiki-dark:#CBA6F7">end</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#8839EF;--shiki-dark:#CBA6F7">local</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> Telescope </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> {</span></span>
+<span class="line"><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">    'nvim-telescope/telescope.nvim'</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">,</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">    lazy </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#D20F39;--shiki-dark:#F38BA8"> true</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">,</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">    cmd </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> { </span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">'Telescope' </span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">},</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">    opts </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> {</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">        defaults </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> {</span></span>
+<span class="line"><span style="--shiki-light:#7C7F93;--shiki-light-font-style:italic;--shiki-dark:#9399B2;--shiki-dark-font-style:italic">            -- 其他配置...</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">            mappings </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> {</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">                n </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> {</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">                    [</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">'&#x3C;C-l>'</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">] </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> focus_preview,</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">                },</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">                i </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> {</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">                    [</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">'&#x3C;C-l>'</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">] </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> focus_preview,</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">                },</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">            },</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">        },</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">    },</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#8839EF;--shiki-dark:#CBA6F7">return</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> Telescope</span></span></code></pre>
+<p>其他替代品: <a href="https://github.com/folke/snacks.nvim/blob/main/docs/picker.md">snacks.picker</a>. 功能比 telescope 更強大, 也更好看, 但我並不待見它.
+<a href="https://github.com/nvim-mini/mini.pick"><code>mini.pick</code></a>, 確實比較 mini, 功能有點少</p>
+<h3 id="git-提示">git 提示</h3>
+<p>git 整合的確是作為開發編輯器不可缺少的一環, 但是我並不認為 Lazygit 這樣的工具應該整合在 neovim 裡面使用. 我使用<a href="https://github.com/lewis6991/gitsigns.nvim">gitsigns</a>
+獲得文件內內的 git 支持, 顯示變更的行號.</p>
+<h3 id="markdown-渲染">Markdown 渲染</h3>
+<p><a href="https://github.com/iamcco/markdown-preview.nvim">Markdown Preview</a> 是我從 vim 時期就在用的插件, 但是這個插件主要是 vimscript
+和 javascript 寫成的, 不是非常方便移植到純 lua 的配置下, 我花了不少時間把 vim script 的配置改造成 lua 的。</p>
+<p><a href="https://github.com/MeanderingProgrammer/render-markdown.nvim">Render Markdown</a> 可以在 neovim 的 buffer 內直接渲染出 markdown。
+但是缺乏對圖片和圖表之類的支援。</p>
+<p><img alt="Markdown Edit and Preview" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 2880px) 2880px, 100vw"  data-astro-image="constrained" width="2880" height="1800" src="/_astro/MarkdownPreview.BZkEMXsH_lHoS3.webp" srcset="/_astro/MarkdownPreview.BZkEMXsH_Z1ofoTD.webp 640w, /_astro/MarkdownPreview.BZkEMXsH_PIbHO.webp 750w, /_astro/MarkdownPreview.BZkEMXsH_ZGVlOo.webp 828w, /_astro/MarkdownPreview.BZkEMXsH_1xFUyk.webp 1080w, /_astro/MarkdownPreview.BZkEMXsH_Z2kU8q9.webp 1280w, /_astro/MarkdownPreview.BZkEMXsH_Z1guQ17.webp 1668w, /_astro/MarkdownPreview.BZkEMXsH_Z1lcJEG.webp 2048w, /_astro/MarkdownPreview.BZkEMXsH_Z1rQxoN.webp 2560w, /_astro/MarkdownPreview.BZkEMXsH_lHoS3.webp 2880w"></p>
+<p>另外一個可以在 buffer 中直接渲染出 markdown 的插件是<a href="https://github.com/OXY2DEV/markview.nvim">Markview</a>。</p>
+<p>我有一個正在實現的預覽圖片的 feature <del>正在實現</del>正在咕咕中。 <del>畢竟這種吃終端的東西要適配還是太難了</del>
+如果真的很需要圖片渲染, 請移步<a href="https://github.com/3rd/image.nvim">image.nvim</a>或者<a href="https://github.com/folke/snacks.nvim/blob/main/docs/image.md">snacks.image</a></p>
+<h3 id="輸入法切換">輸入法切換</h3>
+<p>中文輸入場景下, 在 Normal 模式和 Insert 模式之間切換總是需要切換輸入法, 這比較麻煩. 我在 linux 和 macos 下都使用 fcitx5 輸入法.
+但是兩者實現切換的機制是不一樣的, 使用體驗也並不相同.</p>
+<p>Linux 下採用 <a href="https://github.com/www9song/fcitx5-nvim-zh.git">fcitx5-zh-nvim</a> 這個插件相當的老, 但是非常簡單. 通過 <code>fcitx-remote</code>
+來控制輸入法狀態.</p>
+<p>MacOS 下的 fcitx5 並沒有提供 ipc 接口來控制輸入法狀態, 因此只能用 <a href="https://github.com/drop-stones/im-switch.nvim">im-switch</a> 進行全局切換.
+還需要設定在窗口失焦的時候儲存輸入法狀態. <strong>使用體驗一坨</strong></p>
+<h3 id="內置終端">內置終端</h3>
+<p>內建終端並不常用, 但是冷不丁需要使用一下. 我使用 <a href="https://github.com/akinsho/toggleterm.nvim">toggleterm</a>. 這個懸浮的終端
+只能完成基礎的工作, 用它開啟 yazi 預覽圖片什麼的工作就不太可能了.</p>
+<blockquote>
+<p>NOTE</p>
+<p>關於 snacks, 我並不怎麼待見的原因是它實在太大了. 我認為 neovim 插件應該遵循<a href="https://en.wikipedia.org/wiki/Single-responsibility_principle">單一職責原則</a>.
+儘管 telescope 似乎也不遵守, 但是 telescope 主要負責模糊搜尋, 而且它的大部分功能我都用得上. 因此我能夠接受 telescope.</p>
+</blockquote>
+<h2 id="关于lazy">关于Lazy</h2>
+<blockquote>
+<p>馬上 neovim 都要推出 <code>vim.pack</code> 了, 我為什麼仍然選擇 lazy?</p>
+</blockquote>
+<p><a href="https://github.com/folke/lazy.nvim.git">lazy.nvim</a> 可以說是最流行的 neovim 插件管理器了。幾乎所有適配 neovim 的插件都能在
+README 裡面找到關於 lazy 下如何安裝和配置的代碼。lazy 有懶加載和異步的功能，有的插件可以設置成在打開 buffer，或者打開
+特定類型文件的時候加載，可以優化啟動速度。現在我的 neovim 配置在啟動的時候只會加載 3-4 個插件。</p>
+<p>關於 <code>lazy-lock.json</code>，這是用來鎖版本的文件，以我的習慣會將其納入版本管理，並且每次更新插件都會在提交中說明。在插件因為更新
+而出現問題的時候我會及時回滾。納入版本管理的好處是容易重現 neovim 配置裡可能出現的 bug。</p> </article> <hr class="my-8 border-dashed">  <ul class="mt-4 mb-8 sm:my-8"> <li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/折騰記/" class="relative pe-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 focus-visible:no-underline text-sm" data-astro-transition-scope="astro-36ssibgs-2"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -me-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>折騰記</span> </a> </li><li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/教程/" class="relative pe-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 focus-visible:no-underline text-sm" data-astro-transition-scope="astro-36ssibgs-3"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -me-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>教程</span> </a> </li><li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/neovim/" class="relative pe-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 focus-visible:no-underline text-sm" data-astro-transition-scope="astro-36ssibgs-4"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -me-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>neovim</span> </a> </li> </ul> <div id="btt-btn-container" class="fixed end-4 bottom-8 z-50 md:sticky md:end-auto md:float-end md:me-1 translate-y-14 opacity-0 transition duration-500"> <button data-button="back-to-top" class="group relative bg-background px-2 py-1 size-14 rounded-full shadow-xl md:h-8 md:w-fit md:rounded-md md:shadow-none md:focus-visible:rounded-none md:bg-background/35 md:bg-clip-padding md:backdrop-blur-lg"> <span id="progress-indicator" class="absolute inset-0 -z-10 block size-14 scale-110 rounded-full bg-transparent md:hidden md:h-8 md:rounded-md"></span> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block rotate-90 md:hidden"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <span class="sr-only text-sm group-hover:text-accent md:not-sr-only"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 5l0 14" /><path d="M16 9l-4 -4" /><path d="M8 9l4 -4" /></svg>
+Back To Top
+</span> </button> </div> <script data-astro-rerun>
+  /** Scrolls the document to the top when
+   * the "Back to Top" button is clicked. */
+  function backToTop() {
+    const rootElement = document.documentElement;
+    const btnContainer = document.querySelector("#btt-btn-container");
+    const backToTopBtn = document.querySelector("[data-button='back-to-top']");
+    const progressIndicator = document.querySelector("#progress-indicator");
+
+    if (!rootElement || !btnContainer || !backToTopBtn || !progressIndicator)
+      return;
+
+    // Attach click event handler for back-to-top button
+    backToTopBtn.addEventListener("click", () => {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    });
+
+    // Handle button visibility according to scroll position
+    let lastVisible = null;
+    function handleScroll() {
+      const scrollTotal = rootElement.scrollHeight - rootElement.clientHeight;
+      const scrollTop = rootElement.scrollTop;
+      const scrollPercent = Math.floor((scrollTop / scrollTotal) * 100);
+
+      progressIndicator.style.setProperty(
+        "background-image",
+        `conic-gradient(var(--accent), var(--accent) ${scrollPercent}%, transparent ${scrollPercent}%)`
+      );
+
+      const isVisible = scrollTop / scrollTotal > 0.3;
+
+      if (isVisible !== lastVisible) {
+        btnContainer.classList.toggle("opacity-100", isVisible);
+        btnContainer.classList.toggle("translate-y-0", isVisible);
+        btnContainer.classList.toggle("opacity-0", !isVisible);
+        btnContainer.classList.toggle("translate-y-14", !isVisible);
+        lastVisible = isVisible;
+      }
+    }
+
+    let ticking = false;
+    document.addEventListener("scroll", () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+  }
+  backToTop();
+</script> <div class="flex flex-none flex-col items-center justify-center gap-1 md:items-start"><span class="italic">Share this post on:</span><div class="text-center"><a href="https://wa.me/?text=https://aurora0x27.github.io/posts/nvimconfigfromscratch1/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via WhatsApp"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" /><path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" /></svg><span class="sr-only">Share this post via WhatsApp</span></a><a href="https://www.facebook.com/sharer.php?u=https://aurora0x27.github.io/posts/nvimconfigfromscratch1/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Facebook"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg><span class="sr-only">Share this post on Facebook</span></a><a href="https://x.com/intent/post?url=https://aurora0x27.github.io/posts/nvimconfigfromscratch1/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on X"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg><span class="sr-only">Share this post on X</span></a><a href="https://t.me/share/url?url=https://aurora0x27.github.io/posts/nvimconfigfromscratch1/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via Telegram"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg><span class="sr-only">Share this post via Telegram</span></a><a href="https://pinterest.com/pin/create/button/?url=https://aurora0x27.github.io/posts/nvimconfigfromscratch1/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Pinterest"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 20l4 -9" /><path d="M10.7 14c.437 1.263 1.43 2 2.55 2c2.071 0 3.75 -1.554 3.75 -4a5 5 0 1 0 -9.7 1.7" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg><span class="sr-only">Share this post on Pinterest</span></a><a href="mailto:?subject=See%20this%20post&#38;body=https://aurora0x27.github.io/posts/nvimconfigfromscratch1/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via email"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg><span class="sr-only">Share this post via email</span></a></div></div> <!--
+    <Comment />
+    --> <hr class="my-6 border-dashed"> <!-- Previous/Next Post Buttons --> <div data-pagefind-ignore class="grid grid-cols-1 gap-6 sm:grid-cols-2"> <a href="/posts/nvimconfigfromscratch0" class="flex w-full gap-1 hover:opacity-75"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none rtl:rotate-180"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <div> <span>Previous Post</span> <div class="text-sm text-accent/85">從零開始的 neovim 配置</div> </div> </a> <a href="/posts/gdbguide" class="flex w-full justify-end gap-1 text-end hover:opacity-75 sm:col-start-2"> <div> <span>Next Post</span> <div class="text-sm text-accent/85">GDB 調試入門簡明指南</div> </div> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none rtl:rotate-180"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 6l6 6l-6 6" /></svg> </a> </div> </main> <!--
+TODO: 添加 Icons
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/js/fontawesome.min.js"
+></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/js/brands.min.js"
+></script>
+--><footer class="w-full text-center text-sm text-foreground mt-auto"> <div class="mx-auto max-w-app px-4"> <hr class="border-border" aria-hidden="true"> </div> <div class="flex flex-col items-center justify-center gap-2 py-6 sm:py-4"> <div> 2025 — Content on this site is licensed under
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener noreferrer" class="ml-1 text-foreground underline">
+CC BY-NC-SA 4.0
+</a> </div> <div></div> </div> </footer>  </body></html> <script data-astro-rerun>
+  /** Create a progress indicator
+   *  at the top */
+  function createProgressBar() {
+    // Create the main container div
+    const progressContainer = document.createElement("div");
+    progressContainer.className =
+      "progress-container fixed top-0 z-10 h-1 w-full bg-background";
+
+    // Create the progress bar div
+    const progressBar = document.createElement("div");
+    progressBar.className = "progress-bar h-1 w-0 bg-accent";
+    progressBar.id = "myBar";
+
+    // Append the progress bar to the progress container
+    progressContainer.appendChild(progressBar);
+
+    // Append the progress container to the document body or any other desired parent element
+    document.body.appendChild(progressContainer);
+  }
+  createProgressBar();
+
+  /** Update the progress bar
+   *  when user scrolls */
+  function updateScrollProgress() {
+    document.addEventListener("scroll", () => {
+      const winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      if (document) {
+        const myBar = document.getElementById("myBar");
+        if (myBar) {
+          myBar.style.width = scrolled + "%";
+        }
+      }
+    });
+  }
+  updateScrollProgress();
+
+  /** Attaches links to headings in the document,
+   *  allowing sharing of sections easily */
+  function addHeadingLinks() {
+    const headings = Array.from(
+      document.querySelectorAll("h2, h3, h4, h5, h6")
+    );
+    for (const heading of headings) {
+      heading.classList.add("group");
+      const link = document.createElement("a");
+      link.className =
+        "heading-link ms-2 no-underline opacity-75 md:opacity-0 md:group-hover:opacity-100 md:focus:opacity-100";
+      link.href = "#" + heading.id;
+
+      const span = document.createElement("span");
+      span.ariaHidden = "true";
+      span.innerText = "#";
+      link.appendChild(span);
+      heading.appendChild(link);
+    }
+  }
+  addHeadingLinks();
+
+  /** Attaches copy buttons to code blocks in the document,
+   * allowing users to copy code easily. */
+  function attachCopyButtons() {
+    const copyButtonLabel = "Copy";
+    const codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+    for (const codeBlock of codeBlocks) {
+      const wrapper = document.createElement("div");
+      wrapper.style.position = "relative";
+
+      // Check if --file-name-offset custom property exists
+      const computedStyle = getComputedStyle(codeBlock);
+      const hasFileNameOffset =
+        computedStyle.getPropertyValue("--file-name-offset").trim() !== "";
+
+      // Determine the top positioning class
+      const topClass = hasFileNameOffset
+        ? "top-(--file-name-offset)"
+        : "-top-3";
+
+      const copyButton = document.createElement("button");
+      copyButton.className = `copy-code absolute end-3 ${topClass} rounded bg-muted border border-muted px-2 py-1 text-xs leading-4 text-foreground font-medium`;
+      copyButton.innerHTML = copyButtonLabel;
+      codeBlock.setAttribute("tabindex", "0");
+      codeBlock.appendChild(copyButton);
+
+      // wrap codebock with relative parent element
+      codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
+      wrapper.appendChild(codeBlock);
+
+      copyButton.addEventListener("click", async () => {
+        await copyCode(codeBlock, copyButton);
+      });
+    }
+
+    async function copyCode(block, button) {
+      const code = block.querySelector("code");
+      const text = code?.innerText;
+
+      await navigator.clipboard.writeText(text ?? "");
+
+      // visual feedback that task is completed
+      button.innerText = "Copied";
+
+      setTimeout(() => {
+        button.innerText = copyButtonLabel;
+      }, 700);
+    }
+  }
+  attachCopyButtons();
+
+  /* Go to page start after page swap */
+  document.addEventListener("astro:after-swap", () =>
+    window.scrollTo({ left: 0, top: 0, behavior: "instant" })
+  );
+</script>

@@ -1,0 +1,445 @@
+<!DOCTYPE html><html dir="ltr" lang="zh-Hans" class="scroll-smooth" data-astro-cid-sckkx6r4> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.ico"><link rel="canonical" href="https://aurora0x27.github.io/posts/gdbguide/"><meta name="generator" content="Astro v5.12.0"><!-- General Meta Tags --><title>GDB 調試入門簡明指南 | 清風之戀の空想森林</title><meta name="title" content="GDB 調試入門簡明指南 | 清風之戀の空想森林"><meta name="description" content="给C/C++新手的调试指南"><meta name="author" content="aurora0x27"><link rel="sitemap" href="/sitemap-index.xml"><!-- Open Graph / Facebook --><meta property="og:title" content="GDB 調試入門簡明指南 | 清風之戀の空想森林"><meta property="og:description" content="给C/C++新手的调试指南"><meta property="og:url" content="https://aurora0x27.github.io/posts/gdbguide/"><meta property="og:image" content="https://aurora0x27.github.io/astropaper-og.jpg"><!-- Article Published/Modified time --><meta property="article:published_time" content="2024-11-16T21:22:39.000Z"><meta property="article:modified_time" content="2024-11-16T21:22:39.000Z"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://aurora0x27.github.io/posts/gdbguide/"><meta property="twitter:title" content="GDB 調試入門簡明指南 | 清風之戀の空想森林"><meta property="twitter:description" content="给C/C++新手的调试指南"><meta property="twitter:image" content="https://aurora0x27.github.io/astropaper-og.jpg"><!-- Google JSON-LD Structured data --><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"GDB 調試入門簡明指南 | 清風之戀の空想森林","image":"https://aurora0x27.github.io/astropaper-og.jpg","datePublished":"2024-11-16T21:22:39.000Z","dateModified":"2024-11-16T21:22:39.000Z","author":[{"@type":"Person","name":"aurora0x27","url":"https://aurora0x27.github.io/"}]}</script><!-- Enable RSS feed auto-discovery  --><!-- https://docs.astro.build/en/recipes/rss/#enabling-rss-feed-auto-discovery --><link rel="alternate" type="application/rss+xml" title="清風之戀の空想森林" href="https://aurora0x27.github.io/rss.xml"><meta name="theme-color" content=""><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.D98dxaWf.js"></script><script src="/toggle-theme.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css"><link rel="stylesheet" href="/_astro/about.CieeIWNO.css">
+<style>@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media (prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+.toc[data-astro-cid-6t6zfk7k] a[data-astro-cid-6t6zfk7k]{padding:2px 4px;border-radius:4px;transition:all .2s ease;display:inline-block}.toc[data-astro-cid-6t6zfk7k] a[data-astro-cid-6t6zfk7k]:hover{color:var(--color-accent)}.toc[data-astro-cid-6t6zfk7k] a[data-astro-cid-6t6zfk7k].active{background-color:var(--color-muted)}
+:where([data-astro-image]){object-fit:var(--fit);object-position:var(--pos);height:auto}:where([data-astro-image=full-width]){width:100%}:where([data-astro-image=constrained]){max-width:100%}
+</style><style>[data-astro-transition-scope="astro-pfiegbw7-1"] { view-transition-name: gdb-\8ABF\8A66\5165\9580\7C21\660E\6307\5357; }@layer astro { ::view-transition-old(gdb-\8ABF\8A66\5165\9580\7C21\660E\6307\5357) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(gdb-\8ABF\8A66\5165\9580\7C21\660E\6307\5357) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(gdb-\8ABF\8A66\5165\9580\7C21\660E\6307\5357) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(gdb-\8ABF\8A66\5165\9580\7C21\660E\6307\5357) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-pfiegbw7-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-pfiegbw7-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-pfiegbw7-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-pfiegbw7-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-pfiegbw7-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-pfiegbw7-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-pfiegbw7-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-pfiegbw7-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-2"] { view-transition-name: \6559\7A0B; }@layer astro { ::view-transition-old(\6559\7A0B) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(\6559\7A0B) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(\6559\7A0B) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(\6559\7A0B) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body data-astro-cid-sckkx6r4>  <header> <a id="skip-to-content" href="#main-content" class="absolute start-16 -top-full z-50 bg-background px-3 py-2 text-accent backdrop-blur-lg transition-all focus:top-4">
+Skip to content
+</a> <div id="nav-container" class="mx-auto flex max-w-app flex-col items-center justify-between sm:flex-row"> <div id="top-nav-wrap" class="relative flex w-full items-baseline justify-between bg-background p-4 sm:items-center sm:py-6"> <a href="/" class="absolute py-1 text-xl leading-8 font-semibold whitespace-nowrap sm:static sm:my-auto sm:text-2xl sm:leading-none"> 清風之戀の空想森林 </a> <nav id="nav-menu" class="flex w-full flex-col items-center sm:ms-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0"> <button id="menu-btn" class="focus-outline self-end p-2 sm:hidden" aria-label="Open Menu" aria-expanded="false" aria-controls="menu-items"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden" id="close-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-deep" id="menu-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6h16" /><path d="M7 12h13" /><path d="M10 18h10" /></svg> </button> <ul id="menu-items" class="mt-4 grid w-44 grid-cols-2 place-content-center gap-2 [&#38;>li>a]:block [&#38;>li>a]:px-4 [&#38;>li>a]:py-3 [&#38;>li>a]:text-center [&#38;>li>a]:font-medium [&#38;>li>a]:hover:text-accent sm:[&#38;>li>a]:px-2 sm:[&#38;>li>a]:py-1 hidden sm:mt-0 sm:flex sm:w-auto sm:gap-x-5 sm:gap-y-0"> <li class="col-span-2"> <a href="/posts" class="active-nav">
+Posts
+</a> </li> <li class="col-span-2"> <a href="/tags">
+Tags
+</a> </li> <li class="col-span-2"> <a href="/about">
+About
+</a> </li> <li class="col-span-2"> <a href="/archives" class="group inline-block hover:text-accent focus-outline flex justify-center p-3 sm:p-1" aria-label="archives" title="Archives"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden sm:inline-block"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" /><path d="M10 12l4 0" /></svg> <span class="sm:sr-only">Archives</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <a href="/search" class="group inline-block hover:text-accent focus-outline flex p-3 sm:p-1" aria-label="search" title="Search"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg> <span class="sr-only">Search</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <button id="theme-btn" class="focus-outline relative size-12 p-4 sm:size-8 hover:[&>svg]:stroke-accent" title="Toggles light & dark" aria-label="auto" aria-live="polite"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" /><path d="M6.343 17.657l-1.414 1.414" /><path d="M6.343 6.343l-1.414 -1.414" /><path d="M17.657 6.343l1.414 -1.414" /><path d="M17.657 17.657l1.414 1.414" /><path d="M4 12h-2" /><path d="M12 4v-2" /><path d="M20 12h2" /><path d="M12 20v2" /></svg> </button> </li> </ul> </nav> </div> </div> <div class="mx-auto max-w-app px-4"> <hr class="border-border" aria-hidden="true"> </div> </header> <script type="module">function s(){const e=document.querySelector("#menu-btn"),t=document.querySelector("#menu-items"),n=document.querySelector("#menu-icon"),o=document.querySelector("#close-icon");!e||!t||!n||!o||e.addEventListener("click",()=>{const c=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",c?"false":"true"),e.setAttribute("aria-label",c?"Open Menu":"Close Menu"),t.classList.toggle("hidden"),n.classList.toggle("hidden"),o.classList.toggle("hidden")})}s();document.addEventListener("astro:after-swap",s);</script> <div class="mx-auto flex w-full max-w-app items-center justify-start px-2"><a id="back-button" href="/" class="group inline-block hover:text-accent focus-outline mt-8 mb-2 flex hover:text-foreground/75"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 rtl:rotate-180"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg><span>Go back</span></a></div><script type="module">function o(){const t=document.querySelector("#back-button"),e=sessionStorage.getItem("backUrl");e&&t&&(t.href=e)}document.addEventListener("astro:page-load",o);o();</script> <!-- mobile TOC -->
+  <div class="toc-mobile xl:hidden mx-auto w-full max-w-4xl px-4 mb-6 mt-4"> <details class="bg-background rounded-lg p-4 border"> <summary class="cursor-pointer font-medium text-foreground">
+Table of Contents
+</summary> <div class="mt-3"> <!-- Root component: renders the entire TOC -->
+  <nav class="toc" data-astro-cid-6t6zfk7k><ul data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#1-gdb簡介" data-astro-cid-6t6zfk7k>1. GDB簡介</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#2-源碼級調試" data-astro-cid-6t6zfk7k>2. 源碼級調試</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#21-控制要調試的進程" data-astro-cid-6t6zfk7k>2.1 控制要調試的進程</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#22-斷點" data-astro-cid-6t6zfk7k>2.2 斷點</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#23-單步運行" data-astro-cid-6t6zfk7k>2.3 單步運行</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#單步不進入" data-astro-cid-6t6zfk7k>單步不進入</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#單步進入" data-astro-cid-6t6zfk7k>單步進入</a></li></ul></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#24-查看信息" data-astro-cid-6t6zfk7k>2.4 查看信息</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#print" data-astro-cid-6t6zfk7k>print</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#x" data-astro-cid-6t6zfk7k>x</a></li></ul></li></ul></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#3-彙編級調試" data-astro-cid-6t6zfk7k>3. 彙編級調試</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#31-反彙編" data-astro-cid-6t6zfk7k>3.1 反彙編</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#32-彙編級單步執行" data-astro-cid-6t6zfk7k>3.2 彙編級單步執行</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#33-查看內存與寄存器" data-astro-cid-6t6zfk7k>3.3 查看內存與寄存器</a></li></ul></li></ul></nav><script type="module">let n;function h(){n&&n();const a=document.querySelectorAll('.toc a[href^="#"]'),o=new Map;a.forEach(e=>{const t=e.getAttribute("href");t&&o.set(t.slice(1),e)});const r=Array.from(document.querySelectorAll("h2, h3, h4, h5, h6")).filter(e=>e.id&&o.has(e.id));if(r.length===0||o.size===0)return;let i=null;const s=new IntersectionObserver(e=>{e.forEach(t=>{const l=t.target.id,c=o.get(l);t.isIntersecting&&t.intersectionRatio>=1&&(i&&i.classList.remove("active"),c?.classList.add("active"),i=c)})},{rootMargin:"-100px 0px -50% 0px",threshold:1});r.forEach(e=>s.observe(e)),n=()=>{console.log("Cleaning up observers for the previous page."),r.forEach(e=>s.unobserve(e))}}document.addEventListener("astro:page-load",h,{once:!1});</script> </div> </details> </div>
+  <!-- desktop TOC -->
+  <div class="toc-desktop hidden xl:block fixed top-24 z-10" style="left: calc(50% + min(26rem, 50vw) + 1rem); width: 15rem; max-height: calc(100vh - 15rem); overflow-y: auto;"> <div class="bg-background rounded-md p-4 shadow-sm"> <h3 class="text-sm font-semibold text-foreground mb-2 pb-2 border-b">
+Table of Contents
+</h3> <div class="text-sm"> <!-- Root component: renders the entire TOC -->
+  <nav class="toc" data-astro-cid-6t6zfk7k><ul data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#1-gdb簡介" data-astro-cid-6t6zfk7k>1. GDB簡介</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#2-源碼級調試" data-astro-cid-6t6zfk7k>2. 源碼級調試</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#21-控制要調試的進程" data-astro-cid-6t6zfk7k>2.1 控制要調試的進程</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#22-斷點" data-astro-cid-6t6zfk7k>2.2 斷點</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#23-單步運行" data-astro-cid-6t6zfk7k>2.3 單步運行</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#單步不進入" data-astro-cid-6t6zfk7k>單步不進入</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#單步進入" data-astro-cid-6t6zfk7k>單步進入</a></li></ul></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#24-查看信息" data-astro-cid-6t6zfk7k>2.4 查看信息</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#print" data-astro-cid-6t6zfk7k>print</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#x" data-astro-cid-6t6zfk7k>x</a></li></ul></li></ul></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#3-彙編級調試" data-astro-cid-6t6zfk7k>3. 彙編級調試</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#31-反彙編" data-astro-cid-6t6zfk7k>3.1 反彙編</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#32-彙編級單步執行" data-astro-cid-6t6zfk7k>3.2 彙編級單步執行</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#33-查看內存與寄存器" data-astro-cid-6t6zfk7k>3.3 查看內存與寄存器</a></li></ul></li></ul></nav> </div> </div> </div><main id="main-content" class="mx-auto w-full max-w-app px-4 pb-12" data-pagefind-body> <h1 class="inline-block text-2xl font-bold text-accent sm:text-3xl" data-astro-transition-scope="astro-pfiegbw7-1"> GDB 調試入門簡明指南 </h1> <div class="my-2 flex items-center gap-2"> <div class="flex items-center gap-x-2 opacity-80"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 min-w-[1.375rem]"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M7 14h.013" /><path d="M10.01 14h.005" /><path d="M13.01 14h.005" /><path d="M16.015 14h.005" /><path d="M13.015 17h.005" /><path d="M7.01 17h.005" /><path d="M10.01 17h.005" /></svg>  <time class="text-sm sm:text-base" datetime="2024-11-16T21:22:39.000Z">17 Nov, 2024</time> </div> <span aria-hidden="true" class="max-sm:hidden hidden">|</span>  </div> <article id="article" class="app-prose mx-auto mt-8 max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"> <!--More-->
+<h2 id="1-gdb簡介">1. GDB簡介</h2>
+<p>gdb是<code>gnu debugger</code>的縮寫, 是一款可以用於源碼級和彙編級調試的無圖形界面調試器, 雖然對新手並不算友好, 但是和vim一樣, 都屬於花時間學了就會真香的小工具,<del>學費了就直接拋棄IDE和vscode吧…</del></p>
+<h2 id="2-源碼級調試">2. 源碼級調試</h2>
+<h3 id="21-控制要調試的進程">2.1 控制要調試的進程</h3>
+<p><code>gdb &#x3C;executable_file_name></code>可以啟動調試器, 獲得如下界面</p>
+<p><img alt="gdb start" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 1095px) 1095px, 100vw"  data-astro-image="constrained" width="1095" height="598" src="/_astro/gdb_start.sSN1exyD_DsWHX.webp" srcset="/_astro/gdb_start.sSN1exyD_q78Nc.webp 640w, /_astro/gdb_start.sSN1exyD_Z1rqpzb.webp 750w, /_astro/gdb_start.sSN1exyD_Z1Nz89F.webp 828w, /_astro/gdb_start.sSN1exyD_Z19dGTp.webp 1080w, /_astro/gdb_start.sSN1exyD_DsWHX.webp 1095w"></p>
+<ul>
+<li><code>run</code>可以啟動待調試的可執行文件, 可以簡寫成<code>r</code>. 如果啟動需要帶上命令行參數, 就直接加在後面.</li>
+</ul>
+<p>例如<code>r BV1zuCXYfE6z --resolution=1080p --downloader=/usr/bin/curl</code></p>
+<ul>
+<li>
+<p><code>start</code>可以自動啟動程序, 並在<code>main</code>函數的第一行停下, 若沒有調試信息, 也會完成動態庫加載等準備工作之後停在入口處</p>
+</li>
+<li>
+<p><code>kill</code>可以殺死正在調試的進程</p>
+</li>
+<li>
+<p><code>continue</code>可以使程序繼續運行, 直到遇到斷點或崩潰</p>
+</li>
+<li>
+<p><code>finish</code>可以使程序運行到當前函數結束, 返回調用地點</p>
+</li>
+</ul>
+<blockquote>
+<p>Notes</p>
+<p>gdb的幾乎所有命令都能夠簡寫, 在不具有二義性的情況下可以寫盡量少的字母, 例如<code>run</code>可以寫成<code>r</code>, <code>continue</code>可以寫成<code>c</code>, 也可以使用TAB鍵補全命令</p>
+</blockquote>
+<h3 id="22-斷點">2.2 斷點</h3>
+<p>gdb的斷點指令是<code>break</code>, 可以只簡寫成<code>b</code>.</p>
+<ul>
+<li>
+<p><code>b &#x3C;function></code>: 使程序在進入函數後的第一條語句處停下. 如果是C++代碼, 可以寫出作用域加函數原型, 保證斷點在正確的重載處</p>
+</li>
+<li>
+<p><code>b &#x3C;line-number></code>: 將斷點打在當前文件的對應行號處</p>
+</li>
+<li>
+<p><code>b &#x3C;file_name>:&#x3C;line_number></code>: 將斷點打在指定文件名稱的指定行號處</p>
+</li>
+<li>
+<p><code>info breakpoints</code>: 查看斷點信息</p>
+</li>
+<li>
+<p><code>delete breakpoints &#x3C;breakpoint number></code>: 刪除對應標號的斷點, 若沒給出標號, 就刪除所有斷點</p>
+</li>
+</ul>
+<h3 id="23-單步運行">2.3 單步運行</h3>
+<h4 id="單步不進入">單步不進入</h4>
+<p><code>next</code>可以單步運行代碼(簡寫<code>n</code>), 不進入下一層的函數內部</p>
+<h4 id="單步進入">單步進入</h4>
+<p><code>step</code>可以單步運行代碼(簡寫<code>s</code>), 會進入下一層函數</p>
+<p>例如: 當代碼走到<code>auto res...</code>這一行停下時, 鍵入<code>n</code>會進入下一行<code>std::fstream output_file;</code>, 而鍵入<code>s</code>則會進入<code>qrc_decode</code>函數內部</p>
+<pre class="astro-code astro-code-themes catppuccin-latte catppuccin-mocha" style="--shiki-light:#4c4f69;--shiki-dark:#cdd6f4;--shiki-light-bg:#eff1f5;--shiki-dark-bg:#1e1e2e; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="cpp"><code><span class="line"><span style="--shiki-light:#7C7F93;--shiki-light-font-style:italic;--shiki-dark:#9399B2;--shiki-dark-font-style:italic">// decode...</span></span>
+<span class="line"><span style="--shiki-light:#8839EF;--shiki-dark:#CBA6F7">auto</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> res </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#DF8E1D;--shiki-dark:#F9E2AF"> qqmusic</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">::</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">utils</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">::</span><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">qrc_decode</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">(</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">in_buf</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">,</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> out_buf</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">,</span><span style="--shiki-light:#DF8E1D;--shiki-dark:#F9E2AF"> qqmusic</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">::</span><span style="--shiki-light:#DF8E1D;--shiki-dark:#F9E2AF">utils</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">::</span><span style="--shiki-light:#DF8E1D;--shiki-dark:#F9E2AF">qrc_type</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">::</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">local</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">);</span></span>
+<span class="line"><span style="--shiki-light:#DF8E1D;--shiki-dark:#F9E2AF">std</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">::</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">fstream output_file</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">;</span></span>
+<span class="line"><span style="--shiki-light:#DF8E1D;--shiki-dark:#F9E2AF">std</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">::</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">string output_file_name </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2"> (</span><span style="--shiki-light:#DF8E1D;--shiki-dark:#F9E2AF">std</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">::</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">string</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">)</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">argv</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">[</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">i</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">]</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5"> +</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> ".decode"</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">;</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">ulog</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">(</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">MSG_INFO</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">,</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> "output file is %s"</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">,</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> output_file_name</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">.</span><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">c_str</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">());</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">output_file</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">.</span><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">open</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">(</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">output_file_name</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">,</span><span style="--shiki-light:#DF8E1D;--shiki-dark:#F9E2AF"> std</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">::</span><span style="--shiki-light:#DF8E1D;--shiki-dark:#F9E2AF">ios</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">::</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">out</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">);</span></span></code></pre>
+<h3 id="24-查看信息">2.4 查看信息</h3>
+<h4 id="print"><code>print</code></h4>
+<p><code>print</code>可以簡寫為<code>p</code>, 可以打印變量的值或表達式的值</p>
+<p><img alt="print variable" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 1358px) 1358px, 100vw"  data-astro-image="constrained" width="1358" height="356" src="/_astro/print_var.CQRX5p-v_1jJRkH.webp" srcset="/_astro/print_var.CQRX5p-v_OmlMa.webp 640w, /_astro/print_var.CQRX5p-v_2okbkS.webp 750w, /_astro/print_var.CQRX5p-v_ZtAVCE.webp 828w, /_astro/print_var.CQRX5p-v_Z1gWeY1.webp 1080w, /_astro/print_var.CQRX5p-v_ZxJc8b.webp 1280w, /_astro/print_var.CQRX5p-v_1jJRkH.webp 1358w"></p>
+<p><code>p</code>後面可以加一些修飾來表示以指定的格式輸出內容</p>
+<ul>
+<li>
+<p><code>x</code>: 十六進制顯示</p>
+</li>
+<li>
+<p><code>d</code>: 十進制顯示</p>
+</li>
+<li>
+<p><code>u</code>: 十六進制無符號</p>
+</li>
+<li>
+<p><code>i</code>: 反彙編之後顯示</p>
+</li>
+<li>
+<p><code>t</code>: 八進制顯示</p>
+</li>
+<li>
+<p><code>c</code>: 字符格式顯示</p>
+</li>
+<li>
+<p><code>f</code>: 浮點數格式顯示</p>
+</li>
+<li>
+<p><code>s</code>: 按C風格字符串顯示</p>
+</li>
+</ul>
+<p><em><strong>使用案例</strong></em>: <code>p/s str1</code>, 以字符串打印<code>str1</code>變量</p>
+<h4 id="x"><code>x</code></h4>
+<p><code>x</code>指令可以打印內存地址和寄存器中的值. 用法: <code>x/nfu address</code></p>
+<ul>
+<li>
+<p><code>n</code> 是一個正整數, 指定顯示<code>address</code>向高地址方向打印的內存單元的數量, 不給出就默認一個</p>
+</li>
+<li>
+<p><code>f</code> 是指定顯示格式的, 和上面<code>p</code>的選項一致, 默認十六進制顯示</p>
+</li>
+<li>
+<p><code>u</code> 是指定內存單元長度的選項, <code>b</code>表示單字節, <code>h</code>表示雙字節, <code>w</code>表示四字節, <code>g</code>表示八字節</p>
+</li>
+</ul>
+<p><em><strong>使用案例</strong></em>: <code>x/50wx char_ptr</code>就是十六進制查看<code>char_ptr</code>指向的地址到<code>char_ptr + 50 * 4</code>地址, 也就是<code>char_ptr</code>指向地址偏移200字節內的內容</p>
+<h2 id="3-彙編級調試">3. 彙編級調試</h2>
+<p>在沒有調試信息時gdb仍然可以根據符號表進行調試</p>
+<h3 id="31-反彙編">3.1 反彙編</h3>
+<ul>
+<li>
+<p><code>disassemble &#x3C;function></code>可以反彙編指定的函數</p>
+</li>
+<li>
+<p><code>x/i $rip</code>可以反彙編指令寄存器指向的指令</p>
+</li>
+</ul>
+<h3 id="32-彙編級單步執行">3.2 彙編級單步執行</h3>
+<ul>
+<li>
+<p><code>ni</code>: 彙編級單步不進入(遇到call指令不進入函數)</p>
+</li>
+<li>
+<p><code>si</code>: 彙編級單步進入(遇到call指令進入函數)</p>
+</li>
+</ul>
+<h3 id="33-查看內存與寄存器">3.3 查看內存與寄存器</h3>
+<ul>
+<li><code>info register</code>: 簡寫<code>i r</code>, 查看所有寄存器信息</li>
+</ul>
+<p><img alt="register info" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 2211px) 2211px, 100vw"  data-astro-image="constrained" width="2211" height="869" src="/_astro/registers.BdXCNEEo_Z1nH3S8.webp" srcset="/_astro/registers.BdXCNEEo_Z2a2VfK.webp 640w, /_astro/registers.BdXCNEEo_ZWsm6n.webp 750w, /_astro/registers.BdXCNEEo_bEg7B.webp 828w, /_astro/registers.BdXCNEEo_28CT14.webp 1080w, /_astro/registers.BdXCNEEo_Oc61f.webp 1280w, /_astro/registers.BdXCNEEo_Z1Y4nIV.webp 1668w, /_astro/registers.BdXCNEEo_Z1URlpc.webp 2048w, /_astro/registers.BdXCNEEo_Z1nH3S8.webp 2211w"></p>
+<ul>
+<li>使用<code>x</code>指令查看寄存器和其指向內容—例:<code>x/50wx $rsp</code>查看棧頂指針寄存器向高地址方向的200字節, 4字節一組十六進制顯示</li>
+</ul>
+<p>大部分常用的調試技巧其實只有寥寥幾條指令, 讀者稍加練習就能掌握, 並體驗到命令行調試器的優勢.</p>
+<p>如果需要更詳細的gdb調試技巧, 可以看看<a href="https://wizardforcel.gitbooks.io/100-gdb-tips/content/index.html">100個gdb小技巧</a>.</p> </article> <hr class="my-8 border-dashed">  <ul class="mt-4 mb-8 sm:my-8"> <li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/教程/" class="relative pe-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 focus-visible:no-underline text-sm" data-astro-transition-scope="astro-36ssibgs-2"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -me-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>教程</span> </a> </li> </ul> <div id="btt-btn-container" class="fixed end-4 bottom-8 z-50 md:sticky md:end-auto md:float-end md:me-1 translate-y-14 opacity-0 transition duration-500"> <button data-button="back-to-top" class="group relative bg-background px-2 py-1 size-14 rounded-full shadow-xl md:h-8 md:w-fit md:rounded-md md:shadow-none md:focus-visible:rounded-none md:bg-background/35 md:bg-clip-padding md:backdrop-blur-lg"> <span id="progress-indicator" class="absolute inset-0 -z-10 block size-14 scale-110 rounded-full bg-transparent md:hidden md:h-8 md:rounded-md"></span> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block rotate-90 md:hidden"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <span class="sr-only text-sm group-hover:text-accent md:not-sr-only"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 5l0 14" /><path d="M16 9l-4 -4" /><path d="M8 9l4 -4" /></svg>
+Back To Top
+</span> </button> </div> <script data-astro-rerun>
+  /** Scrolls the document to the top when
+   * the "Back to Top" button is clicked. */
+  function backToTop() {
+    const rootElement = document.documentElement;
+    const btnContainer = document.querySelector("#btt-btn-container");
+    const backToTopBtn = document.querySelector("[data-button='back-to-top']");
+    const progressIndicator = document.querySelector("#progress-indicator");
+
+    if (!rootElement || !btnContainer || !backToTopBtn || !progressIndicator)
+      return;
+
+    // Attach click event handler for back-to-top button
+    backToTopBtn.addEventListener("click", () => {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    });
+
+    // Handle button visibility according to scroll position
+    let lastVisible = null;
+    function handleScroll() {
+      const scrollTotal = rootElement.scrollHeight - rootElement.clientHeight;
+      const scrollTop = rootElement.scrollTop;
+      const scrollPercent = Math.floor((scrollTop / scrollTotal) * 100);
+
+      progressIndicator.style.setProperty(
+        "background-image",
+        `conic-gradient(var(--accent), var(--accent) ${scrollPercent}%, transparent ${scrollPercent}%)`
+      );
+
+      const isVisible = scrollTop / scrollTotal > 0.3;
+
+      if (isVisible !== lastVisible) {
+        btnContainer.classList.toggle("opacity-100", isVisible);
+        btnContainer.classList.toggle("translate-y-0", isVisible);
+        btnContainer.classList.toggle("opacity-0", !isVisible);
+        btnContainer.classList.toggle("translate-y-14", !isVisible);
+        lastVisible = isVisible;
+      }
+    }
+
+    let ticking = false;
+    document.addEventListener("scroll", () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+  }
+  backToTop();
+</script> <div class="flex flex-none flex-col items-center justify-center gap-1 md:items-start"><span class="italic">Share this post on:</span><div class="text-center"><a href="https://wa.me/?text=https://aurora0x27.github.io/posts/gdbguide/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via WhatsApp"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" /><path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" /></svg><span class="sr-only">Share this post via WhatsApp</span></a><a href="https://www.facebook.com/sharer.php?u=https://aurora0x27.github.io/posts/gdbguide/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Facebook"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg><span class="sr-only">Share this post on Facebook</span></a><a href="https://x.com/intent/post?url=https://aurora0x27.github.io/posts/gdbguide/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on X"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg><span class="sr-only">Share this post on X</span></a><a href="https://t.me/share/url?url=https://aurora0x27.github.io/posts/gdbguide/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via Telegram"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg><span class="sr-only">Share this post via Telegram</span></a><a href="https://pinterest.com/pin/create/button/?url=https://aurora0x27.github.io/posts/gdbguide/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Pinterest"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 20l4 -9" /><path d="M10.7 14c.437 1.263 1.43 2 2.55 2c2.071 0 3.75 -1.554 3.75 -4a5 5 0 1 0 -9.7 1.7" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg><span class="sr-only">Share this post on Pinterest</span></a><a href="mailto:?subject=See%20this%20post&#38;body=https://aurora0x27.github.io/posts/gdbguide/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via email"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg><span class="sr-only">Share this post via email</span></a></div></div> <!--
+    <Comment />
+    --> <hr class="my-6 border-dashed"> <!-- Previous/Next Post Buttons --> <div data-pagefind-ignore class="grid grid-cols-1 gap-6 sm:grid-cols-2"> <a href="/posts/nvimconfigfromscratch1" class="flex w-full gap-1 hover:opacity-75"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none rtl:rotate-180"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <div> <span>Previous Post</span> <div class="text-sm text-accent/85">從零開始的 neovim 配置</div> </div> </a> <a href="/posts/vscodeconfigforbeginners" class="flex w-full justify-end gap-1 text-end hover:opacity-75 sm:col-start-2"> <div> <span>Next Post</span> <div class="text-sm text-accent/85">VSCode C++ 配置指南</div> </div> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none rtl:rotate-180"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 6l6 6l-6 6" /></svg> </a> </div> </main> <!--
+TODO: 添加 Icons
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/js/fontawesome.min.js"
+></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/js/brands.min.js"
+></script>
+--><footer class="w-full text-center text-sm text-foreground mt-auto"> <div class="mx-auto max-w-app px-4"> <hr class="border-border" aria-hidden="true"> </div> <div class="flex flex-col items-center justify-center gap-2 py-6 sm:py-4"> <div> 2025 — Content on this site is licensed under
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener noreferrer" class="ml-1 text-foreground underline">
+CC BY-NC-SA 4.0
+</a> </div> <div></div> </div> </footer>  </body></html> <script data-astro-rerun>
+  /** Create a progress indicator
+   *  at the top */
+  function createProgressBar() {
+    // Create the main container div
+    const progressContainer = document.createElement("div");
+    progressContainer.className =
+      "progress-container fixed top-0 z-10 h-1 w-full bg-background";
+
+    // Create the progress bar div
+    const progressBar = document.createElement("div");
+    progressBar.className = "progress-bar h-1 w-0 bg-accent";
+    progressBar.id = "myBar";
+
+    // Append the progress bar to the progress container
+    progressContainer.appendChild(progressBar);
+
+    // Append the progress container to the document body or any other desired parent element
+    document.body.appendChild(progressContainer);
+  }
+  createProgressBar();
+
+  /** Update the progress bar
+   *  when user scrolls */
+  function updateScrollProgress() {
+    document.addEventListener("scroll", () => {
+      const winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      if (document) {
+        const myBar = document.getElementById("myBar");
+        if (myBar) {
+          myBar.style.width = scrolled + "%";
+        }
+      }
+    });
+  }
+  updateScrollProgress();
+
+  /** Attaches links to headings in the document,
+   *  allowing sharing of sections easily */
+  function addHeadingLinks() {
+    const headings = Array.from(
+      document.querySelectorAll("h2, h3, h4, h5, h6")
+    );
+    for (const heading of headings) {
+      heading.classList.add("group");
+      const link = document.createElement("a");
+      link.className =
+        "heading-link ms-2 no-underline opacity-75 md:opacity-0 md:group-hover:opacity-100 md:focus:opacity-100";
+      link.href = "#" + heading.id;
+
+      const span = document.createElement("span");
+      span.ariaHidden = "true";
+      span.innerText = "#";
+      link.appendChild(span);
+      heading.appendChild(link);
+    }
+  }
+  addHeadingLinks();
+
+  /** Attaches copy buttons to code blocks in the document,
+   * allowing users to copy code easily. */
+  function attachCopyButtons() {
+    const copyButtonLabel = "Copy";
+    const codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+    for (const codeBlock of codeBlocks) {
+      const wrapper = document.createElement("div");
+      wrapper.style.position = "relative";
+
+      // Check if --file-name-offset custom property exists
+      const computedStyle = getComputedStyle(codeBlock);
+      const hasFileNameOffset =
+        computedStyle.getPropertyValue("--file-name-offset").trim() !== "";
+
+      // Determine the top positioning class
+      const topClass = hasFileNameOffset
+        ? "top-(--file-name-offset)"
+        : "-top-3";
+
+      const copyButton = document.createElement("button");
+      copyButton.className = `copy-code absolute end-3 ${topClass} rounded bg-muted border border-muted px-2 py-1 text-xs leading-4 text-foreground font-medium`;
+      copyButton.innerHTML = copyButtonLabel;
+      codeBlock.setAttribute("tabindex", "0");
+      codeBlock.appendChild(copyButton);
+
+      // wrap codebock with relative parent element
+      codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
+      wrapper.appendChild(codeBlock);
+
+      copyButton.addEventListener("click", async () => {
+        await copyCode(codeBlock, copyButton);
+      });
+    }
+
+    async function copyCode(block, button) {
+      const code = block.querySelector("code");
+      const text = code?.innerText;
+
+      await navigator.clipboard.writeText(text ?? "");
+
+      // visual feedback that task is completed
+      button.innerText = "Copied";
+
+      setTimeout(() => {
+        button.innerText = copyButtonLabel;
+      }, 700);
+    }
+  }
+  attachCopyButtons();
+
+  /* Go to page start after page swap */
+  document.addEventListener("astro:after-swap", () =>
+    window.scrollTo({ left: 0, top: 0, behavior: "instant" })
+  );
+</script>

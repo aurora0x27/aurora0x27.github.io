@@ -1,0 +1,440 @@
+<!DOCTYPE html><html dir="ltr" lang="zh-Hans" class="scroll-smooth" data-astro-cid-sckkx6r4> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.ico"><link rel="canonical" href="https://aurora0x27.github.io/posts/movelinuxtonewdevice/"><meta name="generator" content="Astro v5.12.0"><!-- General Meta Tags --><title>将Linux移植到新的设备 | 清風之戀の空想森林</title><meta name="title" content="将Linux移植到新的设备 | 清風之戀の空想森林"><meta name="description" content="我的一次系统移植(升级)"><meta name="author" content="aurora0x27"><link rel="sitemap" href="/sitemap-index.xml"><!-- Open Graph / Facebook --><meta property="og:title" content="将Linux移植到新的设备 | 清風之戀の空想森林"><meta property="og:description" content="我的一次系统移植(升级)"><meta property="og:url" content="https://aurora0x27.github.io/posts/movelinuxtonewdevice/"><meta property="og:image" content="https://aurora0x27.github.io/astropaper-og.jpg"><!-- Article Published/Modified time --><meta property="article:published_time" content="2024-08-04T22:00:50.000Z"><meta property="article:modified_time" content="2024-08-04T22:00:50.000Z"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://aurora0x27.github.io/posts/movelinuxtonewdevice/"><meta property="twitter:title" content="将Linux移植到新的设备 | 清風之戀の空想森林"><meta property="twitter:description" content="我的一次系统移植(升级)"><meta property="twitter:image" content="https://aurora0x27.github.io/astropaper-og.jpg"><!-- Google JSON-LD Structured data --><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"将Linux移植到新的设备 | 清風之戀の空想森林","image":"https://aurora0x27.github.io/astropaper-og.jpg","datePublished":"2024-08-04T22:00:50.000Z","dateModified":"2024-08-04T22:00:50.000Z","author":[{"@type":"Person","name":"aurora0x27","url":"https://aurora0x27.github.io/"}]}</script><!-- Enable RSS feed auto-discovery  --><!-- https://docs.astro.build/en/recipes/rss/#enabling-rss-feed-auto-discovery --><link rel="alternate" type="application/rss+xml" title="清風之戀の空想森林" href="https://aurora0x27.github.io/rss.xml"><meta name="theme-color" content=""><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.D98dxaWf.js"></script><script src="/toggle-theme.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css"><link rel="stylesheet" href="/_astro/about.CieeIWNO.css">
+<style>@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media (prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+.toc[data-astro-cid-6t6zfk7k] a[data-astro-cid-6t6zfk7k]{padding:2px 4px;border-radius:4px;transition:all .2s ease;display:inline-block}.toc[data-astro-cid-6t6zfk7k] a[data-astro-cid-6t6zfk7k]:hover{color:var(--color-accent)}.toc[data-astro-cid-6t6zfk7k] a[data-astro-cid-6t6zfk7k].active{background-color:var(--color-muted)}
+:where([data-astro-image]){object-fit:var(--fit);object-position:var(--pos);height:auto}:where([data-astro-image=full-width]){width:100%}:where([data-astro-image=constrained]){max-width:100%}
+</style><style>[data-astro-transition-scope="astro-pfiegbw7-1"] { view-transition-name: \5C06-linux\79FB\690D\5230\65B0\7684\8BBE\5907; }@layer astro { ::view-transition-old(\5C06-linux\79FB\690D\5230\65B0\7684\8BBE\5907) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(\5C06-linux\79FB\690D\5230\65B0\7684\8BBE\5907) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(\5C06-linux\79FB\690D\5230\65B0\7684\8BBE\5907) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(\5C06-linux\79FB\690D\5230\65B0\7684\8BBE\5907) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-pfiegbw7-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-pfiegbw7-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-pfiegbw7-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-pfiegbw7-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-pfiegbw7-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-pfiegbw7-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-pfiegbw7-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-pfiegbw7-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-2"] { view-transition-name: \6559\7A0B; }@layer astro { ::view-transition-old(\6559\7A0B) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(\6559\7A0B) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(\6559\7A0B) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(\6559\7A0B) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-3"] { view-transition-name: linux; }@layer astro { ::view-transition-old(linux) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(linux) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(linux) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(linux) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-4"] { view-transition-name: \6298\817E\8BB0; }@layer astro { ::view-transition-old(\6298\817E\8BB0) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(\6298\817E\8BB0) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(\6298\817E\8BB0) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(\6298\817E\8BB0) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body data-astro-cid-sckkx6r4>  <header> <a id="skip-to-content" href="#main-content" class="absolute start-16 -top-full z-50 bg-background px-3 py-2 text-accent backdrop-blur-lg transition-all focus:top-4">
+Skip to content
+</a> <div id="nav-container" class="mx-auto flex max-w-app flex-col items-center justify-between sm:flex-row"> <div id="top-nav-wrap" class="relative flex w-full items-baseline justify-between bg-background p-4 sm:items-center sm:py-6"> <a href="/" class="absolute py-1 text-xl leading-8 font-semibold whitespace-nowrap sm:static sm:my-auto sm:text-2xl sm:leading-none"> 清風之戀の空想森林 </a> <nav id="nav-menu" class="flex w-full flex-col items-center sm:ms-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0"> <button id="menu-btn" class="focus-outline self-end p-2 sm:hidden" aria-label="Open Menu" aria-expanded="false" aria-controls="menu-items"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden" id="close-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-deep" id="menu-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6h16" /><path d="M7 12h13" /><path d="M10 18h10" /></svg> </button> <ul id="menu-items" class="mt-4 grid w-44 grid-cols-2 place-content-center gap-2 [&#38;>li>a]:block [&#38;>li>a]:px-4 [&#38;>li>a]:py-3 [&#38;>li>a]:text-center [&#38;>li>a]:font-medium [&#38;>li>a]:hover:text-accent sm:[&#38;>li>a]:px-2 sm:[&#38;>li>a]:py-1 hidden sm:mt-0 sm:flex sm:w-auto sm:gap-x-5 sm:gap-y-0"> <li class="col-span-2"> <a href="/posts" class="active-nav">
+Posts
+</a> </li> <li class="col-span-2"> <a href="/tags">
+Tags
+</a> </li> <li class="col-span-2"> <a href="/about">
+About
+</a> </li> <li class="col-span-2"> <a href="/archives" class="group inline-block hover:text-accent focus-outline flex justify-center p-3 sm:p-1" aria-label="archives" title="Archives"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden sm:inline-block"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" /><path d="M10 12l4 0" /></svg> <span class="sm:sr-only">Archives</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <a href="/search" class="group inline-block hover:text-accent focus-outline flex p-3 sm:p-1" aria-label="search" title="Search"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg> <span class="sr-only">Search</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <button id="theme-btn" class="focus-outline relative size-12 p-4 sm:size-8 hover:[&>svg]:stroke-accent" title="Toggles light & dark" aria-label="auto" aria-live="polite"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" /><path d="M6.343 17.657l-1.414 1.414" /><path d="M6.343 6.343l-1.414 -1.414" /><path d="M17.657 6.343l1.414 -1.414" /><path d="M17.657 17.657l1.414 1.414" /><path d="M4 12h-2" /><path d="M12 4v-2" /><path d="M20 12h2" /><path d="M12 20v2" /></svg> </button> </li> </ul> </nav> </div> </div> <div class="mx-auto max-w-app px-4"> <hr class="border-border" aria-hidden="true"> </div> </header> <script type="module">function s(){const e=document.querySelector("#menu-btn"),t=document.querySelector("#menu-items"),n=document.querySelector("#menu-icon"),o=document.querySelector("#close-icon");!e||!t||!n||!o||e.addEventListener("click",()=>{const c=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",c?"false":"true"),e.setAttribute("aria-label",c?"Open Menu":"Close Menu"),t.classList.toggle("hidden"),n.classList.toggle("hidden"),o.classList.toggle("hidden")})}s();document.addEventListener("astro:after-swap",s);</script> <div class="mx-auto flex w-full max-w-app items-center justify-start px-2"><a id="back-button" href="/" class="group inline-block hover:text-accent focus-outline mt-8 mb-2 flex hover:text-foreground/75"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 rtl:rotate-180"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg><span>Go back</span></a></div><script type="module">function o(){const t=document.querySelector("#back-button"),e=sessionStorage.getItem("backUrl");e&&t&&(t.href=e)}document.addEventListener("astro:page-load",o);o();</script> <!-- mobile TOC -->
+  <div class="toc-mobile xl:hidden mx-auto w-full max-w-4xl px-4 mb-6 mt-4"> <details class="bg-background rounded-lg p-4 border"> <summary class="cursor-pointer font-medium text-foreground">
+Table of Contents
+</summary> <div class="mt-3"> <!-- Root component: renders the entire TOC -->
+  <nav class="toc" data-astro-cid-6t6zfk7k><ul data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#1-备份操作系统" data-astro-cid-6t6zfk7k>1. 备份操作系统</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#2-制作安装盘" data-astro-cid-6t6zfk7k>2. 制作安装盘</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#21-制作启动u盘" data-astro-cid-6t6zfk7k>2.1 制作启动U盘:</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#22-移植到新电脑" data-astro-cid-6t6zfk7k>2.2 移植到新电脑</a></li></ul></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#3-事后处理" data-astro-cid-6t6zfk7k>3. 事后处理</a></li></ul></nav><script type="module">let n;function h(){n&&n();const a=document.querySelectorAll('.toc a[href^="#"]'),o=new Map;a.forEach(e=>{const t=e.getAttribute("href");t&&o.set(t.slice(1),e)});const r=Array.from(document.querySelectorAll("h2, h3, h4, h5, h6")).filter(e=>e.id&&o.has(e.id));if(r.length===0||o.size===0)return;let i=null;const s=new IntersectionObserver(e=>{e.forEach(t=>{const l=t.target.id,c=o.get(l);t.isIntersecting&&t.intersectionRatio>=1&&(i&&i.classList.remove("active"),c?.classList.add("active"),i=c)})},{rootMargin:"-100px 0px -50% 0px",threshold:1});r.forEach(e=>s.observe(e)),n=()=>{console.log("Cleaning up observers for the previous page."),r.forEach(e=>s.unobserve(e))}}document.addEventListener("astro:page-load",h,{once:!1});</script> </div> </details> </div>
+  <!-- desktop TOC -->
+  <div class="toc-desktop hidden xl:block fixed top-24 z-10" style="left: calc(50% + min(26rem, 50vw) + 1rem); width: 15rem; max-height: calc(100vh - 15rem); overflow-y: auto;"> <div class="bg-background rounded-md p-4 shadow-sm"> <h3 class="text-sm font-semibold text-foreground mb-2 pb-2 border-b">
+Table of Contents
+</h3> <div class="text-sm"> <!-- Root component: renders the entire TOC -->
+  <nav class="toc" data-astro-cid-6t6zfk7k><ul data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#1-备份操作系统" data-astro-cid-6t6zfk7k>1. 备份操作系统</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#2-制作安装盘" data-astro-cid-6t6zfk7k>2. 制作安装盘</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#21-制作启动u盘" data-astro-cid-6t6zfk7k>2.1 制作启动U盘:</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#22-移植到新电脑" data-astro-cid-6t6zfk7k>2.2 移植到新电脑</a></li></ul></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#3-事后处理" data-astro-cid-6t6zfk7k>3. 事后处理</a></li></ul></nav> </div> </div> </div><main id="main-content" class="mx-auto w-full max-w-app px-4 pb-12" data-pagefind-body> <h1 class="inline-block text-2xl font-bold text-accent sm:text-3xl" data-astro-transition-scope="astro-pfiegbw7-1"> 将Linux移植到新的设备 </h1> <div class="my-2 flex items-center gap-2"> <div class="flex items-center gap-x-2 opacity-80"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 min-w-[1.375rem]"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M7 14h.013" /><path d="M10.01 14h.005" /><path d="M13.01 14h.005" /><path d="M16.015 14h.005" /><path d="M13.015 17h.005" /><path d="M7.01 17h.005" /><path d="M10.01 17h.005" /></svg>  <time class="text-sm sm:text-base" datetime="2024-08-04T22:00:50.000Z">5 Aug, 2024</time> </div> <span aria-hidden="true" class="max-sm:hidden hidden">|</span>  </div> <article id="article" class="app-prose mx-auto mt-8 max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"> <p>约莫是今年二月份的时间, 我一时冲动, 拿了一台2017年产的联想二手笔记本安装了ArchLinux, 原本只是打算装Linux只是玩一玩,
+但是后来逐渐变成了主力机(真香), 随着开发和其他需求的增加, 原本的4核处理器, 8G内存和256G的磁盘空间就显得有点太憋屈了.
+于是在今年暑假, 我换了一台thinkbook14, 拥有了16G/2T的配置. 接下来的工作就是把系统迁移进入新的硬件</p>
+<p><img alt="hardware info" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 1500px) 1500px, 100vw"  data-astro-image="constrained" width="1500" height="836" src="/_astro/hardwareInfo.BkBpNEYi_ZgkpiF.webp" srcset="/_astro/hardwareInfo.BkBpNEYi_ZVwrBN.webp 640w, /_astro/hardwareInfo.BkBpNEYi_Z26QsVL.webp 750w, /_astro/hardwareInfo.BkBpNEYi_1U1hbO.webp 828w, /_astro/hardwareInfo.BkBpNEYi_ZDUq1y.webp 1080w, /_astro/hardwareInfo.BkBpNEYi_Z1DjpVY.webp 1280w, /_astro/hardwareInfo.BkBpNEYi_ZgkpiF.webp 1500w"></p>
+<h2 id="1-备份操作系统">1. 备份操作系统</h2>
+<p>移植过程中会大量使用<code>root</code>权限, 因此为了避免操作失误造成不可逆的后果, 需要进行备份.</p>
+<blockquote>
+<p>Warning
+此处需要注意文件系统的一致性, 我早些时候使用的是老的<code>ntfs</code>移动硬盘进行备份, 最后造成硬盘损坏, 无法进行自动的挂载.
+在Windows下修复无果之后只能重新格式化</p>
+</blockquote>
+<pre class="astro-code astro-code-themes catppuccin-latte catppuccin-mocha" style="--shiki-light:#4c4f69;--shiki-dark:#cdd6f4;--shiki-light-bg:#eff1f5;--shiki-dark-bg:#1e1e2e; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">sudo</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> rsync</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> -aAXHv</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> --exclude='/dev/*'</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> --exclude='/proc/*'</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> --exclude='/sys/*'</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> --exclude='/tmp/*'</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> --exclude='/run/*'</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> --exclude='/mnt/*'</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> --exclude='/media/*'</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> --exclude='/lost+found/'</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> /</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> /your_backup_dir</span></span></code></pre>
+<h2 id="2-制作安装盘">2. 制作安装盘</h2>
+<p>移植操作系统的主要思路主要有两种, 即自上而下和自下而上, 这里推荐<a href="https://wiki.archlinuxcn.org/wiki/%E8%BF%81%E7%A7%BB%E5%88%B0%E6%96%B0%E7%A1%AC%E4%BB%B6">一篇Wiki</a>. 我这次主要采用的是自上而下的思路.
+首先将操作系统和其中用户的文件一并移植进入U盘, 成为移动的启动U盘, 再将U盘中的系统移植进入新电脑的硬盘.</p>
+<h3 id="21-制作启动u盘">2.1 制作启动U盘:</h3>
+<ul>
+<li>
+<p>先准备一个移动储存介质(可以是U盘或者移动硬盘), 其容量大小需要大于旧电脑医用空间的大小.</p>
+</li>
+<li>
+<p>记下旧电脑文件系统信息: <code>lsblk -f</code></p>
+</li>
+<li>
+<p>备份U盘中的文件后, <code>sudo fdisk /dev/sda</code> 进行重新分区:</p>
+<ul>
+<li>
+<p>按<code>m</code>打印帮助信息</p>
+</li>
+<li>
+<p>首先抹除原有分区信息<code>d</code>指令, 一直回车, 直到输入<code>p</code>指令得到没有分区的结果</p>
+</li>
+<li>
+<p><code>n</code>创建新的分区, 第一分区较小, 将来会作为引导分区, 挂载 <code>/boot</code>目录, 另一个则是根分区. <em><strong>这里两个分区的分区类型, 第一分区是<code>EFI System</code>, 第二分区则是默认的<code>Linux</code></strong></em></p>
+</li>
+</ul>
+<p><img alt="现在系统的分区情况" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 1187px) 1187px, 100vw"  data-astro-image="constrained" width="1187" height="479" src="/_astro/systemDiskParts.BdLqVM1P_2oaXxv.webp" srcset="/_astro/systemDiskParts.BdLqVM1P_Z17x09T.webp 640w, /_astro/systemDiskParts.BdLqVM1P_Z29x3RM.webp 750w, /_astro/systemDiskParts.BdLqVM1P_2wxbNn.webp 828w, /_astro/systemDiskParts.BdLqVM1P_rx6tr.webp 1080w, /_astro/systemDiskParts.BdLqVM1P_2oaXxv.webp 1187w"></p>
+<ul>
+<li><code>w</code>指令将分区信息写入磁盘</li>
+</ul>
+</li>
+<li>
+<p>进行格式化操作<code>sudo mkfs.vfat /dev/sda1</code>, 第一分区是引导分区, 于我来说是<code>vfat</code>文件系统, 你应当填入对应的引导分区文件系统类型.
+<code>sudo mkfs.ext4 /dev/sda2</code>, 为第二分区写入系统的文件系统, 这里也需要填写和你系统对应的文件系统类型</p>
+</li>
+<li>
+<p>这时再<code>lsblk -f</code>, 就会看到U盘被分为了两个分区. <em><strong>记下出现的<code>UUID</code>;一会要考</strong></em> <code>sudo mount /dev/sda1 /run/media/usrname/</code> 首先挂载第一分区, <code>sudo rsync -aAXHv /boot/* /run/media/usrname</code>, 将<code>/boot/</code>目录下的文件拷贝到引导分区内, 修改其中的<code>/grub/grub.cfg</code>, 将里面所有旧的<code>UUID</code>替换成新的, 这保证引导程序按着<code>UUID</code>能正确的找到根文件系统所在的设备. 最后<code>sudo umount /run/media/usrname</code>, 解挂载第一分区.</p>
+</li>
+<li>
+<p>然后使用相同的手法完全的克隆整个根目录到第二分区, 修改<code>/bost/grub/grub.cfg</code>, <code>/etc/fstab</code>. 也是替换<code>UUID</code>, 后者是系统加载时负责配置目录挂载过程的配置文件. 最后要解挂载.</p>
+</li>
+</ul>
+<h3 id="22-移植到新电脑">2.2 移植到新电脑</h3>
+<p>现在就可以插在新电脑上了. 但是在进行系统的移植之前, 需要解除电脑的<code>security boot</code>, 这是一种保护电脑, 不允许从外部USB设备启动的机制. 在开机上电, 快要出现品牌徽标前不断的按<code>F2</code>键 <em>因电脑被型号而异, 值得一试的有<code>F1, F2, F12</code>等</em>, 进入设置, 关闭<code>security boot</code>, 然后重启, 用相同的手法进入选择从何设备启动的界面 <em>于我来说是<code>F12</code>, 也因电脑型号而异.</em>, 选择从U盘启动, 只需要利用这个U盘里面的系统对电脑里的硬盘做相同的分区, 格式化, 拷贝和修改文件操作就行了.</p>
+<p>Tips:</p>
+<ul>
+<li>
+<p>这里可以尝试新的分区方式, 比如将home单独放在一个分区; 或者像我一样, 电脑里两块硬盘, 一块做根分区, 另一块作为数据盘挂在<code>~/Data</code>下.</p>
+</li>
+<li>
+<p>修改分区方式是在刚刚开始进行重新分区格式化时进行, 之后需要修改 <code>/etc/fstab</code>, 使之挂载到对应的位置</p>
+</li>
+</ul>
+<p><img alt="my_fstab_file" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 1939px) 1939px, 100vw"  data-astro-image="constrained" width="1939" height="512" src="/_astro/my_fstab_file.BXwq92Jv_Z2gKmsh.webp" srcset="/_astro/my_fstab_file.BXwq92Jv_Z3TsLs.webp 640w, /_astro/my_fstab_file.BXwq92Jv_Z1kpzcw.webp 750w, /_astro/my_fstab_file.BXwq92Jv_Z1CxGnO.webp 828w, /_astro/my_fstab_file.BXwq92Jv_1h3EfB.webp 1080w, /_astro/my_fstab_file.BXwq92Jv_Z2mjdm8.webp 1280w, /_astro/my_fstab_file.BXwq92Jv_ZGeyIm.webp 1668w, /_astro/my_fstab_file.BXwq92Jv_Z2gKmsh.webp 1939w"></p>
+<ul>
+<li>上图就是我的<code>/etc/fstab</code>, 从上到下分别是根分区, 引导分区和自己划定的数据分区. 其实要挂载其他的分区很简单, 其他的参数不用管, 只需要在对应的位置填写挂在位置和<code>UUID</code>即可, 其他的和上面我自己的<code>~/Data</code>分区保持一致即可</li>
+</ul>
+<h2 id="3-事后处理">3. 事后处理</h2>
+<p>能够走到这一步, 那么移植系统已经算成功一半了, 有时重头戏可能会是事后处理部分. 因为旧电脑的系统配置很可能不适应新电脑的硬件.</p>
+<p>我遇到的第一个问题的分辨率问题, 我的旧电脑分辨率只有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1360</mn><mo>×</mo><mn>768</mn></mrow><annotation encoding="application/x-tex">1360 \times 768</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1360</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">768</span></span></span></span> , 但是新电脑却高达 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2880</mn><mo>×</mo><mn>1800</mn></mrow><annotation encoding="application/x-tex">2880 \times 1800</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2880</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1800</span></span></span></span>, 导致UI过小. 由于我是KDE桌面, 可以直接通过<strong>设置>>显示和监视器>>显示器配置</strong>进行设置缩放率</p>
+<p><img alt="resolution_settings" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 2041px) 2041px, 100vw"  data-astro-image="constrained" width="2041" height="930" src="/_astro/resolution_settings.DdZfTuRw_2bSuED.webp" srcset="/_astro/resolution_settings.DdZfTuRw_9WAAd.webp 640w, /_astro/resolution_settings.DdZfTuRw_Z1w1r5A.webp 750w, /_astro/resolution_settings.DdZfTuRw_1E5FwR.webp 828w, /_astro/resolution_settings.DdZfTuRw_29fprT.webp 1080w, /_astro/resolution_settings.DdZfTuRw_MAR8X.webp 1280w, /_astro/resolution_settings.DdZfTuRw_Z2dtKkB.webp 1668w, /_astro/resolution_settings.DdZfTuRw_2bSuED.webp 2041w"></p>
+<p>但是我始终没有解决的一个问题是SDDM登陆界面的UI显示过小, 虽然也尝试过按照网上的教程去修改配置文件, 但是SDDM始终没有变化(只是输个密码, 其实只是好不好看而已, 所以就没再改了)</p>
+<p>第二个问题则是声卡, 开始时这台电脑根本发不出一点声音. 于是我检查了声卡的硬件信息 <code>lspci -k | grep media</code></p>
+<p><img alt="media_driver_info" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 1472px) 1472px, 100vw"  data-astro-image="constrained" width="1472" height="157" src="/_astro/media_dirver_info.oCDSYgdJ_Z1iCP4t.webp" srcset="/_astro/media_dirver_info.oCDSYgdJ_MUj2P.webp 640w, /_astro/media_dirver_info.oCDSYgdJ_77Fty.webp 750w, /_astro/media_dirver_info.oCDSYgdJ_ZjmHVd.webp 828w, /_astro/media_dirver_info.oCDSYgdJ_uvdQI.webp 1080w, /_astro/media_dirver_info.oCDSYgdJ_Z1X2uM0.webp 1280w, /_astro/media_dirver_info.oCDSYgdJ_Z1iCP4t.webp 1472w"></p>
+<p>进一步发现声卡驱动没有安装. 然后在ArchWiki上搜索, 很幸运的发现了<a href="https://bbs.archlinuxcn.org/viewtopic.php?id=10479">解决方案</a>, 把对应的驱动装上, 重启就自动好了</p> </article> <hr class="my-8 border-dashed">  <ul class="mt-4 mb-8 sm:my-8"> <li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/教程/" class="relative pe-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 focus-visible:no-underline text-sm" data-astro-transition-scope="astro-36ssibgs-2"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -me-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>教程</span> </a> </li><li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/linux/" class="relative pe-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 focus-visible:no-underline text-sm" data-astro-transition-scope="astro-36ssibgs-3"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -me-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>Linux</span> </a> </li><li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/折腾记/" class="relative pe-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 focus-visible:no-underline text-sm" data-astro-transition-scope="astro-36ssibgs-4"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -me-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>折腾记</span> </a> </li> </ul> <div id="btt-btn-container" class="fixed end-4 bottom-8 z-50 md:sticky md:end-auto md:float-end md:me-1 translate-y-14 opacity-0 transition duration-500"> <button data-button="back-to-top" class="group relative bg-background px-2 py-1 size-14 rounded-full shadow-xl md:h-8 md:w-fit md:rounded-md md:shadow-none md:focus-visible:rounded-none md:bg-background/35 md:bg-clip-padding md:backdrop-blur-lg"> <span id="progress-indicator" class="absolute inset-0 -z-10 block size-14 scale-110 rounded-full bg-transparent md:hidden md:h-8 md:rounded-md"></span> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block rotate-90 md:hidden"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <span class="sr-only text-sm group-hover:text-accent md:not-sr-only"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 5l0 14" /><path d="M16 9l-4 -4" /><path d="M8 9l4 -4" /></svg>
+Back To Top
+</span> </button> </div> <script data-astro-rerun>
+  /** Scrolls the document to the top when
+   * the "Back to Top" button is clicked. */
+  function backToTop() {
+    const rootElement = document.documentElement;
+    const btnContainer = document.querySelector("#btt-btn-container");
+    const backToTopBtn = document.querySelector("[data-button='back-to-top']");
+    const progressIndicator = document.querySelector("#progress-indicator");
+
+    if (!rootElement || !btnContainer || !backToTopBtn || !progressIndicator)
+      return;
+
+    // Attach click event handler for back-to-top button
+    backToTopBtn.addEventListener("click", () => {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    });
+
+    // Handle button visibility according to scroll position
+    let lastVisible = null;
+    function handleScroll() {
+      const scrollTotal = rootElement.scrollHeight - rootElement.clientHeight;
+      const scrollTop = rootElement.scrollTop;
+      const scrollPercent = Math.floor((scrollTop / scrollTotal) * 100);
+
+      progressIndicator.style.setProperty(
+        "background-image",
+        `conic-gradient(var(--accent), var(--accent) ${scrollPercent}%, transparent ${scrollPercent}%)`
+      );
+
+      const isVisible = scrollTop / scrollTotal > 0.3;
+
+      if (isVisible !== lastVisible) {
+        btnContainer.classList.toggle("opacity-100", isVisible);
+        btnContainer.classList.toggle("translate-y-0", isVisible);
+        btnContainer.classList.toggle("opacity-0", !isVisible);
+        btnContainer.classList.toggle("translate-y-14", !isVisible);
+        lastVisible = isVisible;
+      }
+    }
+
+    let ticking = false;
+    document.addEventListener("scroll", () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+  }
+  backToTop();
+</script> <div class="flex flex-none flex-col items-center justify-center gap-1 md:items-start"><span class="italic">Share this post on:</span><div class="text-center"><a href="https://wa.me/?text=https://aurora0x27.github.io/posts/movelinuxtonewdevice/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via WhatsApp"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" /><path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" /></svg><span class="sr-only">Share this post via WhatsApp</span></a><a href="https://www.facebook.com/sharer.php?u=https://aurora0x27.github.io/posts/movelinuxtonewdevice/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Facebook"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg><span class="sr-only">Share this post on Facebook</span></a><a href="https://x.com/intent/post?url=https://aurora0x27.github.io/posts/movelinuxtonewdevice/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on X"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg><span class="sr-only">Share this post on X</span></a><a href="https://t.me/share/url?url=https://aurora0x27.github.io/posts/movelinuxtonewdevice/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via Telegram"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg><span class="sr-only">Share this post via Telegram</span></a><a href="https://pinterest.com/pin/create/button/?url=https://aurora0x27.github.io/posts/movelinuxtonewdevice/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Pinterest"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 20l4 -9" /><path d="M10.7 14c.437 1.263 1.43 2 2.55 2c2.071 0 3.75 -1.554 3.75 -4a5 5 0 1 0 -9.7 1.7" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg><span class="sr-only">Share this post on Pinterest</span></a><a href="mailto:?subject=See%20this%20post&#38;body=https://aurora0x27.github.io/posts/movelinuxtonewdevice/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via email"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg><span class="sr-only">Share this post via email</span></a></div></div> <!--
+    <Comment />
+    --> <hr class="my-6 border-dashed"> <!-- Previous/Next Post Buttons --> <div data-pagefind-ignore class="grid grid-cols-1 gap-6 sm:grid-cols-2"> <a href="/posts/wincursor2linux" class="flex w-full gap-1 hover:opacity-75"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none rtl:rotate-180"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <div> <span>Previous Post</span> <div class="text-sm text-accent/85">將Windows動態光標主題移植到Linux下</div> </div> </a> <a href="/posts/helloworld" class="flex w-full justify-end gap-1 text-end hover:opacity-75 sm:col-start-2"> <div> <span>Next Post</span> <div class="text-sm text-accent/85">Hello World</div> </div> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none rtl:rotate-180"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 6l6 6l-6 6" /></svg> </a> </div> </main> <!--
+TODO: 添加 Icons
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/js/fontawesome.min.js"
+></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/js/brands.min.js"
+></script>
+--><footer class="w-full text-center text-sm text-foreground mt-auto"> <div class="mx-auto max-w-app px-4"> <hr class="border-border" aria-hidden="true"> </div> <div class="flex flex-col items-center justify-center gap-2 py-6 sm:py-4"> <div> 2025 — Content on this site is licensed under
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener noreferrer" class="ml-1 text-foreground underline">
+CC BY-NC-SA 4.0
+</a> </div> <div></div> </div> </footer>  </body></html> <script data-astro-rerun>
+  /** Create a progress indicator
+   *  at the top */
+  function createProgressBar() {
+    // Create the main container div
+    const progressContainer = document.createElement("div");
+    progressContainer.className =
+      "progress-container fixed top-0 z-10 h-1 w-full bg-background";
+
+    // Create the progress bar div
+    const progressBar = document.createElement("div");
+    progressBar.className = "progress-bar h-1 w-0 bg-accent";
+    progressBar.id = "myBar";
+
+    // Append the progress bar to the progress container
+    progressContainer.appendChild(progressBar);
+
+    // Append the progress container to the document body or any other desired parent element
+    document.body.appendChild(progressContainer);
+  }
+  createProgressBar();
+
+  /** Update the progress bar
+   *  when user scrolls */
+  function updateScrollProgress() {
+    document.addEventListener("scroll", () => {
+      const winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      if (document) {
+        const myBar = document.getElementById("myBar");
+        if (myBar) {
+          myBar.style.width = scrolled + "%";
+        }
+      }
+    });
+  }
+  updateScrollProgress();
+
+  /** Attaches links to headings in the document,
+   *  allowing sharing of sections easily */
+  function addHeadingLinks() {
+    const headings = Array.from(
+      document.querySelectorAll("h2, h3, h4, h5, h6")
+    );
+    for (const heading of headings) {
+      heading.classList.add("group");
+      const link = document.createElement("a");
+      link.className =
+        "heading-link ms-2 no-underline opacity-75 md:opacity-0 md:group-hover:opacity-100 md:focus:opacity-100";
+      link.href = "#" + heading.id;
+
+      const span = document.createElement("span");
+      span.ariaHidden = "true";
+      span.innerText = "#";
+      link.appendChild(span);
+      heading.appendChild(link);
+    }
+  }
+  addHeadingLinks();
+
+  /** Attaches copy buttons to code blocks in the document,
+   * allowing users to copy code easily. */
+  function attachCopyButtons() {
+    const copyButtonLabel = "Copy";
+    const codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+    for (const codeBlock of codeBlocks) {
+      const wrapper = document.createElement("div");
+      wrapper.style.position = "relative";
+
+      // Check if --file-name-offset custom property exists
+      const computedStyle = getComputedStyle(codeBlock);
+      const hasFileNameOffset =
+        computedStyle.getPropertyValue("--file-name-offset").trim() !== "";
+
+      // Determine the top positioning class
+      const topClass = hasFileNameOffset
+        ? "top-(--file-name-offset)"
+        : "-top-3";
+
+      const copyButton = document.createElement("button");
+      copyButton.className = `copy-code absolute end-3 ${topClass} rounded bg-muted border border-muted px-2 py-1 text-xs leading-4 text-foreground font-medium`;
+      copyButton.innerHTML = copyButtonLabel;
+      codeBlock.setAttribute("tabindex", "0");
+      codeBlock.appendChild(copyButton);
+
+      // wrap codebock with relative parent element
+      codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
+      wrapper.appendChild(codeBlock);
+
+      copyButton.addEventListener("click", async () => {
+        await copyCode(codeBlock, copyButton);
+      });
+    }
+
+    async function copyCode(block, button) {
+      const code = block.querySelector("code");
+      const text = code?.innerText;
+
+      await navigator.clipboard.writeText(text ?? "");
+
+      // visual feedback that task is completed
+      button.innerText = "Copied";
+
+      setTimeout(() => {
+        button.innerText = copyButtonLabel;
+      }, 700);
+    }
+  }
+  attachCopyButtons();
+
+  /* Go to page start after page swap */
+  document.addEventListener("astro:after-swap", () =>
+    window.scrollTo({ left: 0, top: 0, behavior: "instant" })
+  );
+</script>

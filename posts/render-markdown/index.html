@@ -1,0 +1,838 @@
+<!DOCTYPE html><html dir="ltr" lang="zh-Hans" class="scroll-smooth" data-astro-cid-sckkx6r4> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.ico"><link rel="canonical" href="https://aurora0x27.github.io/posts/render-markdown/"><meta name="generator" content="Astro v5.12.0"><!-- General Meta Tags --><title>Markdown 渲染測試 | 清風之戀の空想森林</title><meta name="title" content="Markdown 渲染測試 | 清風之戀の空想森林"><meta name="description" content="遷移到 Astro"><meta name="author" content="aurora0x27"><link rel="sitemap" href="/sitemap-index.xml"><!-- Open Graph / Facebook --><meta property="og:title" content="Markdown 渲染測試 | 清風之戀の空想森林"><meta property="og:description" content="遷移到 Astro"><meta property="og:url" content="https://aurora0x27.github.io/posts/render-markdown/"><meta property="og:image" content="https://aurora0x27.github.io/astropaper-og.jpg"><!-- Article Published/Modified time --><meta property="article:published_time" content="2025-10-13T10:03:57.000Z"><meta property="article:modified_time" content="2025-10-13T10:03:57.000Z"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://aurora0x27.github.io/posts/render-markdown/"><meta property="twitter:title" content="Markdown 渲染測試 | 清風之戀の空想森林"><meta property="twitter:description" content="遷移到 Astro"><meta property="twitter:image" content="https://aurora0x27.github.io/astropaper-og.jpg"><!-- Google JSON-LD Structured data --><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Markdown 渲染測試 | 清風之戀の空想森林","image":"https://aurora0x27.github.io/astropaper-og.jpg","datePublished":"2025-10-13T10:03:57.000Z","dateModified":"2025-10-13T10:03:57.000Z","author":[{"@type":"Person","name":"aurora0x27","url":"https://aurora0x27.github.io/"}]}</script><!-- Enable RSS feed auto-discovery  --><!-- https://docs.astro.build/en/recipes/rss/#enabling-rss-feed-auto-discovery --><link rel="alternate" type="application/rss+xml" title="清風之戀の空想森林" href="https://aurora0x27.github.io/rss.xml"><meta name="theme-color" content=""><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.D98dxaWf.js"></script><script src="/toggle-theme.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css"><link rel="stylesheet" href="/_astro/about.CieeIWNO.css">
+<style>@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media (prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+.toc[data-astro-cid-6t6zfk7k] a[data-astro-cid-6t6zfk7k]{padding:2px 4px;border-radius:4px;transition:all .2s ease;display:inline-block}.toc[data-astro-cid-6t6zfk7k] a[data-astro-cid-6t6zfk7k]:hover{color:var(--color-accent)}.toc[data-astro-cid-6t6zfk7k] a[data-astro-cid-6t6zfk7k].active{background-color:var(--color-muted)}
+:where([data-astro-image]){object-fit:var(--fit);object-position:var(--pos);height:auto}:where([data-astro-image=full-width]){width:100%}:where([data-astro-image=constrained]){max-width:100%}
+</style><style>[data-astro-transition-scope="astro-pfiegbw7-1"] { view-transition-name: markdown-\6E32\67D3\6E2C\8A66; }@layer astro { ::view-transition-old(markdown-\6E32\67D3\6E2C\8A66) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(markdown-\6E32\67D3\6E2C\8A66) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(markdown-\6E32\67D3\6E2C\8A66) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(markdown-\6E32\67D3\6E2C\8A66) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-pfiegbw7-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-pfiegbw7-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-pfiegbw7-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-pfiegbw7-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-pfiegbw7-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-pfiegbw7-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-pfiegbw7-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-pfiegbw7-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-2"] { view-transition-name: userscript; }@layer astro { ::view-transition-old(userscript) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(userscript) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(userscript) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(userscript) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-3"] { view-transition-name: javascript; }@layer astro { ::view-transition-old(javascript) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(javascript) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(javascript) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(javascript) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body data-astro-cid-sckkx6r4>  <header> <a id="skip-to-content" href="#main-content" class="absolute start-16 -top-full z-50 bg-background px-3 py-2 text-accent backdrop-blur-lg transition-all focus:top-4">
+Skip to content
+</a> <div id="nav-container" class="mx-auto flex max-w-app flex-col items-center justify-between sm:flex-row"> <div id="top-nav-wrap" class="relative flex w-full items-baseline justify-between bg-background p-4 sm:items-center sm:py-6"> <a href="/" class="absolute py-1 text-xl leading-8 font-semibold whitespace-nowrap sm:static sm:my-auto sm:text-2xl sm:leading-none"> 清風之戀の空想森林 </a> <nav id="nav-menu" class="flex w-full flex-col items-center sm:ms-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0"> <button id="menu-btn" class="focus-outline self-end p-2 sm:hidden" aria-label="Open Menu" aria-expanded="false" aria-controls="menu-items"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden" id="close-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-deep" id="menu-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6h16" /><path d="M7 12h13" /><path d="M10 18h10" /></svg> </button> <ul id="menu-items" class="mt-4 grid w-44 grid-cols-2 place-content-center gap-2 [&#38;>li>a]:block [&#38;>li>a]:px-4 [&#38;>li>a]:py-3 [&#38;>li>a]:text-center [&#38;>li>a]:font-medium [&#38;>li>a]:hover:text-accent sm:[&#38;>li>a]:px-2 sm:[&#38;>li>a]:py-1 hidden sm:mt-0 sm:flex sm:w-auto sm:gap-x-5 sm:gap-y-0"> <li class="col-span-2"> <a href="/posts" class="active-nav">
+Posts
+</a> </li> <li class="col-span-2"> <a href="/tags">
+Tags
+</a> </li> <li class="col-span-2"> <a href="/about">
+About
+</a> </li> <li class="col-span-2"> <a href="/archives" class="group inline-block hover:text-accent focus-outline flex justify-center p-3 sm:p-1" aria-label="archives" title="Archives"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden sm:inline-block"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" /><path d="M10 12l4 0" /></svg> <span class="sm:sr-only">Archives</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <a href="/search" class="group inline-block hover:text-accent focus-outline flex p-3 sm:p-1" aria-label="search" title="Search"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg> <span class="sr-only">Search</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <button id="theme-btn" class="focus-outline relative size-12 p-4 sm:size-8 hover:[&>svg]:stroke-accent" title="Toggles light & dark" aria-label="auto" aria-live="polite"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" /><path d="M6.343 17.657l-1.414 1.414" /><path d="M6.343 6.343l-1.414 -1.414" /><path d="M17.657 6.343l1.414 -1.414" /><path d="M17.657 17.657l1.414 1.414" /><path d="M4 12h-2" /><path d="M12 4v-2" /><path d="M20 12h2" /><path d="M12 20v2" /></svg> </button> </li> </ul> </nav> </div> </div> <div class="mx-auto max-w-app px-4"> <hr class="border-border" aria-hidden="true"> </div> </header> <script type="module">function s(){const e=document.querySelector("#menu-btn"),t=document.querySelector("#menu-items"),n=document.querySelector("#menu-icon"),o=document.querySelector("#close-icon");!e||!t||!n||!o||e.addEventListener("click",()=>{const c=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",c?"false":"true"),e.setAttribute("aria-label",c?"Open Menu":"Close Menu"),t.classList.toggle("hidden"),n.classList.toggle("hidden"),o.classList.toggle("hidden")})}s();document.addEventListener("astro:after-swap",s);</script> <div class="mx-auto flex w-full max-w-app items-center justify-start px-2"><a id="back-button" href="/" class="group inline-block hover:text-accent focus-outline mt-8 mb-2 flex hover:text-foreground/75"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 rtl:rotate-180"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg><span>Go back</span></a></div><script type="module">function o(){const t=document.querySelector("#back-button"),e=sessionStorage.getItem("backUrl");e&&t&&(t.href=e)}document.addEventListener("astro:page-load",o);o();</script> <!-- mobile TOC -->
+  <div class="toc-mobile xl:hidden mx-auto w-full max-w-4xl px-4 mb-6 mt-4"> <details class="bg-background rounded-lg p-4 border"> <summary class="cursor-pointer font-medium text-foreground">
+Table of Contents
+</summary> <div class="mt-3"> <!-- Root component: renders the entire TOC -->
+  <nav class="toc" data-astro-cid-6t6zfk7k><ul data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#editormd" data-astro-cid-6t6zfk7k>Editor.md</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#autolink-literals" data-astro-cid-6t6zfk7k>Autolink literals</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#footnote" data-astro-cid-6t6zfk7k>Footnote</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#strikethrough" data-astro-cid-6t6zfk7k>Strikethrough</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#table" data-astro-cid-6t6zfk7k>Table</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#tasklist" data-astro-cid-6t6zfk7k>Tasklist</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#smart-test" data-astro-cid-6t6zfk7k>Smart Test</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#heading-2" data-astro-cid-6t6zfk7k>Heading 2</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#heading-3" data-astro-cid-6t6zfk7k>Heading 3</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#heading-4" data-astro-cid-6t6zfk7k>Heading 4</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#heading-5" data-astro-cid-6t6zfk7k>Heading 5</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#heading-6" data-astro-cid-6t6zfk7k>Heading 6</a></li></ul></li></ul></li></ul></li></ul></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#heading-2-link-heading-link" data-astro-cid-6t6zfk7k>Heading 2 link Heading link</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#heading-3-link-heading-link" data-astro-cid-6t6zfk7k>Heading 3 link Heading link</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#heading-4-link-heading-link-heading-link-heading-link" data-astro-cid-6t6zfk7k>Heading 4 link Heading link Heading link Heading link</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#heading-5-link-heading-link" data-astro-cid-6t6zfk7k>Heading 5 link Heading link</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#heading-6-link-heading-link" data-astro-cid-6t6zfk7k>Heading 6 link Heading link</a></li></ul></li></ul></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#标题用底线的形式heading-underline" data-astro-cid-6t6zfk7k>标题（用底线的形式）Heading (underline)</a></li></ul></li></ul></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#this-is-an-h2" data-astro-cid-6t6zfk7k>This is an H2</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#字符效果和横线等" data-astro-cid-6t6zfk7k>字符效果和横线等</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#引用-blockquotes" data-astro-cid-6t6zfk7k>引用 Blockquotes</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#锚点与链接-links" data-astro-cid-6t6zfk7k>锚点与链接 Links</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#多语言代码高亮-codes" data-astro-cid-6t6zfk7k>多语言代码高亮 Codes</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#行内代码-inline-code" data-astro-cid-6t6zfk7k>行内代码 Inline code</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#缩进风格" data-astro-cid-6t6zfk7k>缩进风格</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#js代码" data-astro-cid-6t6zfk7k>JS代码　</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#html-代码-html-codes" data-astro-cid-6t6zfk7k>HTML 代码 HTML codes</a></li></ul></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#图片-images" data-astro-cid-6t6zfk7k>图片 Images</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#列表-lists" data-astro-cid-6t6zfk7k>列表 Lists</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#无序列表减号unordered-lists-" data-astro-cid-6t6zfk7k>无序列表（减号）Unordered Lists (-)</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#无序列表星号unordered-lists" data-astro-cid-6t6zfk7k>无序列表（星号）Unordered Lists (*)</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#无序列表加号和嵌套unordered-lists" data-astro-cid-6t6zfk7k>无序列表（加号和嵌套）Unordered Lists (+)</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#有序列表-ordered-lists-" data-astro-cid-6t6zfk7k>有序列表 Ordered Lists (-)</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#gfm-task-list" data-astro-cid-6t6zfk7k>GFM task list</a></li></ul></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#绘制表格-tables" data-astro-cid-6t6zfk7k>绘制表格 Tables</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#特殊符号-html-entities-codes" data-astro-cid-6t6zfk7k>特殊符号 HTML Entities Codes</a></li></ul></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#emoji表情-smiley" data-astro-cid-6t6zfk7k>Emoji表情 :smiley:</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#gfm-task-lists--emoji--fontawesome-icon-emoji--editormd-logo-emoji-editormd-logo-5x" data-astro-cid-6t6zfk7k>GFM task lists &amp; Emoji &amp; fontAwesome icon emoji &amp; editormd logo emoji :editormd-logo-5x:</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#反斜杠-escape" data-astro-cid-6t6zfk7k>反斜杠 Escape</a></li></ul></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#科学公式-texkatex" data-astro-cid-6t6zfk7k>科学公式 TeX(KaTeX)</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#分页符-page-break" data-astro-cid-6t6zfk7k>分页符 Page break</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#绘制流程图-flowchart" data-astro-cid-6t6zfk7k>绘制流程图 Flowchart</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#绘制序列图-sequence-diagram" data-astro-cid-6t6zfk7k>绘制序列图 Sequence Diagram</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#end" data-astro-cid-6t6zfk7k>End</a></li></ul></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#footnote-label" data-astro-cid-6t6zfk7k>Footnotes</a></li></ul></nav><script type="module">let n;function h(){n&&n();const a=document.querySelectorAll('.toc a[href^="#"]'),o=new Map;a.forEach(e=>{const t=e.getAttribute("href");t&&o.set(t.slice(1),e)});const r=Array.from(document.querySelectorAll("h2, h3, h4, h5, h6")).filter(e=>e.id&&o.has(e.id));if(r.length===0||o.size===0)return;let i=null;const s=new IntersectionObserver(e=>{e.forEach(t=>{const l=t.target.id,c=o.get(l);t.isIntersecting&&t.intersectionRatio>=1&&(i&&i.classList.remove("active"),c?.classList.add("active"),i=c)})},{rootMargin:"-100px 0px -50% 0px",threshold:1});r.forEach(e=>s.observe(e)),n=()=>{console.log("Cleaning up observers for the previous page."),r.forEach(e=>s.unobserve(e))}}document.addEventListener("astro:page-load",h,{once:!1});</script> </div> </details> </div>
+  <!-- desktop TOC -->
+  <div class="toc-desktop hidden xl:block fixed top-24 z-10" style="left: calc(50% + min(26rem, 50vw) + 1rem); width: 15rem; max-height: calc(100vh - 15rem); overflow-y: auto;"> <div class="bg-background rounded-md p-4 shadow-sm"> <h3 class="text-sm font-semibold text-foreground mb-2 pb-2 border-b">
+Table of Contents
+</h3> <div class="text-sm"> <!-- Root component: renders the entire TOC -->
+  <nav class="toc" data-astro-cid-6t6zfk7k><ul data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#editormd" data-astro-cid-6t6zfk7k>Editor.md</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#autolink-literals" data-astro-cid-6t6zfk7k>Autolink literals</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#footnote" data-astro-cid-6t6zfk7k>Footnote</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#strikethrough" data-astro-cid-6t6zfk7k>Strikethrough</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#table" data-astro-cid-6t6zfk7k>Table</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#tasklist" data-astro-cid-6t6zfk7k>Tasklist</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#smart-test" data-astro-cid-6t6zfk7k>Smart Test</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#heading-2" data-astro-cid-6t6zfk7k>Heading 2</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#heading-3" data-astro-cid-6t6zfk7k>Heading 3</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#heading-4" data-astro-cid-6t6zfk7k>Heading 4</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#heading-5" data-astro-cid-6t6zfk7k>Heading 5</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#heading-6" data-astro-cid-6t6zfk7k>Heading 6</a></li></ul></li></ul></li></ul></li></ul></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#heading-2-link-heading-link" data-astro-cid-6t6zfk7k>Heading 2 link Heading link</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#heading-3-link-heading-link" data-astro-cid-6t6zfk7k>Heading 3 link Heading link</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#heading-4-link-heading-link-heading-link-heading-link" data-astro-cid-6t6zfk7k>Heading 4 link Heading link Heading link Heading link</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#heading-5-link-heading-link" data-astro-cid-6t6zfk7k>Heading 5 link Heading link</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#heading-6-link-heading-link" data-astro-cid-6t6zfk7k>Heading 6 link Heading link</a></li></ul></li></ul></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#标题用底线的形式heading-underline" data-astro-cid-6t6zfk7k>标题（用底线的形式）Heading (underline)</a></li></ul></li></ul></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#this-is-an-h2" data-astro-cid-6t6zfk7k>This is an H2</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#字符效果和横线等" data-astro-cid-6t6zfk7k>字符效果和横线等</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#引用-blockquotes" data-astro-cid-6t6zfk7k>引用 Blockquotes</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#锚点与链接-links" data-astro-cid-6t6zfk7k>锚点与链接 Links</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#多语言代码高亮-codes" data-astro-cid-6t6zfk7k>多语言代码高亮 Codes</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#行内代码-inline-code" data-astro-cid-6t6zfk7k>行内代码 Inline code</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#缩进风格" data-astro-cid-6t6zfk7k>缩进风格</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#js代码" data-astro-cid-6t6zfk7k>JS代码　</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#html-代码-html-codes" data-astro-cid-6t6zfk7k>HTML 代码 HTML codes</a></li></ul></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#图片-images" data-astro-cid-6t6zfk7k>图片 Images</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#列表-lists" data-astro-cid-6t6zfk7k>列表 Lists</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#无序列表减号unordered-lists-" data-astro-cid-6t6zfk7k>无序列表（减号）Unordered Lists (-)</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#无序列表星号unordered-lists" data-astro-cid-6t6zfk7k>无序列表（星号）Unordered Lists (*)</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#无序列表加号和嵌套unordered-lists" data-astro-cid-6t6zfk7k>无序列表（加号和嵌套）Unordered Lists (+)</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#有序列表-ordered-lists-" data-astro-cid-6t6zfk7k>有序列表 Ordered Lists (-)</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#gfm-task-list" data-astro-cid-6t6zfk7k>GFM task list</a></li></ul></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#绘制表格-tables" data-astro-cid-6t6zfk7k>绘制表格 Tables</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#特殊符号-html-entities-codes" data-astro-cid-6t6zfk7k>特殊符号 HTML Entities Codes</a></li></ul></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#emoji表情-smiley" data-astro-cid-6t6zfk7k>Emoji表情 :smiley:</a><ul class="ml-4" data-astro-cid-6t6zfk7k><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#gfm-task-lists--emoji--fontawesome-icon-emoji--editormd-logo-emoji-editormd-logo-5x" data-astro-cid-6t6zfk7k>GFM task lists &amp; Emoji &amp; fontAwesome icon emoji &amp; editormd logo emoji :editormd-logo-5x:</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#反斜杠-escape" data-astro-cid-6t6zfk7k>反斜杠 Escape</a></li></ul></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#科学公式-texkatex" data-astro-cid-6t6zfk7k>科学公式 TeX(KaTeX)</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#分页符-page-break" data-astro-cid-6t6zfk7k>分页符 Page break</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#绘制流程图-flowchart" data-astro-cid-6t6zfk7k>绘制流程图 Flowchart</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#绘制序列图-sequence-diagram" data-astro-cid-6t6zfk7k>绘制序列图 Sequence Diagram</a></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#end" data-astro-cid-6t6zfk7k>End</a></li></ul></li><!-- Recursive component: rendering a single heading -->
+  <li data-astro-cid-6t6zfk7k><a href="#footnote-label" data-astro-cid-6t6zfk7k>Footnotes</a></li></ul></nav> </div> </div> </div><main id="main-content" class="mx-auto w-full max-w-app px-4 pb-12" data-pagefind-body> <h1 class="inline-block text-2xl font-bold text-accent sm:text-3xl" data-astro-transition-scope="astro-pfiegbw7-1"> Markdown 渲染測試 </h1> <div class="my-2 flex items-center gap-2"> <div class="flex items-center gap-x-2 opacity-80"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 min-w-[1.375rem]"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M7 14h.013" /><path d="M10.01 14h.005" /><path d="M13.01 14h.005" /><path d="M16.015 14h.005" /><path d="M13.015 17h.005" /><path d="M7.01 17h.005" /><path d="M10.01 17h.005" /></svg>  <time class="text-sm sm:text-base" datetime="2025-10-13T10:03:57.000Z">13 Oct, 2025</time> </div> <span aria-hidden="true" class="max-sm:hidden hidden">|</span>  </div> <article id="article" class="app-prose mx-auto mt-8 max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"> <h2 id="editormd">Editor.md</h2>
+<p>!> Here is a tip.</p>
+<p>?> And a warning.</p>
+<p>x> Or an error.</p>
+<p><a href="https://oschina.net">hhh</a></p>
+<img src="https://pandao.github.io/editor.md/images/logos/editormd-logo-180x180.png">
+<h2 id="autolink-literals">Autolink literals</h2>
+<p><a href="http://www.example.com">www.example.com</a>, <a href="https://example.com">https://example.com</a>, and <a href="mailto:contact@example.com">contact@example.com</a>.</p>
+<h2 id="footnote">Footnote</h2>
+<p>A note<sup><a href="#user-content-fn-1" id="user-content-fnref-1" data-footnote-ref="" aria-describedby="footnote-label">1</a></sup></p>
+<h2 id="strikethrough">Strikethrough</h2>
+<p><del>one</del> or <del>two</del> tildes.</p>
+<h2 id="table">Table</h2>
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>a</th><th align="left">b</th><th align="right">c</th><th align="center">d</th></tr></thead></table>
+<h2 id="tasklist">Tasklist</h2>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> to do</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> done</li>
+</ul>
+<h2 id="smart-test">Smart Test</h2>
+<p>…</p>
+<hr>
+<p>—</p>
+<p><img src="https://pandao.github.io/editor.md/images/logos/editormd-logo-180x180.png" alt=""></p>
+<p><img src="https://img.shields.io/github/stars/pandao/editor.md.svg" alt=""> <img src="https://img.shields.io/github/forks/pandao/editor.md.svg" alt=""> <img src="https://img.shields.io/github/tag/pandao/editor.md.svg" alt=""> <img src="https://img.shields.io/github/release/pandao/editor.md.svg" alt=""> <img src="https://img.shields.io/github/issues/pandao/editor.md.svg" alt=""> <img src="https://img.shields.io/bower/v/editor.md.svg" alt=""></p>
+<p><strong>目录 (Table of Contents)</strong></p>
+<p>[TOCM]</p>
+<p>[TOC]</p>
+<h2 id="heading-2">Heading 2</h2>
+<h3 id="heading-3">Heading 3</h3>
+<h4 id="heading-4">Heading 4</h4>
+<h5 id="heading-5">Heading 5</h5>
+<h6 id="heading-6">Heading 6</h6>
+<h2 id="heading-2-link-heading-link">Heading 2 link <a href="https://github.com/pandao/editor.md" title="Heading link">Heading link</a></h2>
+<h3 id="heading-3-link-heading-link">Heading 3 link <a href="https://github.com/pandao/editor.md" title="Heading link">Heading link</a></h3>
+<h4 id="heading-4-link-heading-link-heading-link-heading-link">Heading 4 link <a href="https://github.com/pandao/editor.md" title="Heading link">Heading link</a> Heading link <a href="https://github.com/pandao/editor.md" title="Heading link">Heading link</a></h4>
+<h5 id="heading-5-link-heading-link">Heading 5 link <a href="https://github.com/pandao/editor.md" title="Heading link">Heading link</a></h5>
+<h6 id="heading-6-link-heading-link">Heading 6 link <a href="https://github.com/pandao/editor.md" title="Heading link">Heading link</a></h6>
+<h4 id="标题用底线的形式heading-underline">标题（用底线的形式）Heading (underline)</h4>
+<h1 id="this-is-an-h1">This is an H1</h1>
+<h2 id="this-is-an-h2">This is an H2</h2>
+<h3 id="字符效果和横线等">字符效果和横线等</h3>
+<hr>
+<p><del>删除线</del> <s>删除线（开启识别HTML标签时）</s>
+<em>斜体字</em>      <em>斜体字</em>
+<strong>粗体</strong>  <strong>粗体</strong>
+<em><strong>粗斜体</strong></em> <em><strong>粗斜体</strong></em></p>
+<p>上标：X<sub>2</sub>，下标：O<sup>2</sup></p>
+<p><strong>缩写(同HTML的abbr标签)</strong></p>
+<blockquote>
+<p>即更长的单词或短语的缩写形式，前提是开启识别HTML标签时，已默认开启</p>
+</blockquote>
+<p>The <abbr title="Hyper Text Markup Language">HTML</abbr> specification is maintained by the <abbr title="World Wide Web Consortium">W3C</abbr>.</p>
+<h3 id="引用-blockquotes">引用 Blockquotes</h3>
+<blockquote>
+<p>引用文本 Blockquotes</p>
+</blockquote>
+<p>引用的行内混合 Blockquotes</p>
+<blockquote>
+<p>引用：如果想要插入空白换行<code>即&#x3C;br />标签</code>，在插入处先键入两个以上的空格然后回车即可，<a href="http://localhost/">普通链接</a>。</p>
+</blockquote>
+<h3 id="锚点与链接-links">锚点与链接 Links</h3>
+<p><a href="http://localhost/">普通链接</a></p>
+<p><a href="http://localhost/" title="普通链接带标题">普通链接带标题</a></p>
+<p>直接链接：<a href="https://github.com">https://github.com</a></p>
+<p><a href="https://baidu.com">https://baidu.com</a></p>
+<p><a href="http://www.this-anchor-link.com/">锚点链接</a></p>
+<p><a href="mailto:test.test@gmail.com">mailto:test.test@gmail.com</a></p>
+<p>GFM a-tail link <a href="https://my.oschina.net/u/3691274">@pandao</a>  邮箱地址自动链接 <a href="mailto:test.test@gmail.com">test.test@gmail.com</a>  <a href="mailto:www@vip.qq.com">www@vip.qq.com</a></p>
+<blockquote>
+<p>@pandao</p>
+</blockquote>
+<h3 id="多语言代码高亮-codes">多语言代码高亮 Codes</h3>
+<h4 id="行内代码-inline-code">行内代码 Inline code</h4>
+<p>执行命令：<code>npm install marked</code></p>
+<h4 id="缩进风格">缩进风格</h4>
+<p>即缩进四个空格，也做为实现类似 <code>&#x3C;pre></code> 预格式化文本 ( Preformatted Text ) 的功能。</p>
+<pre class="astro-code astro-code-themes catppuccin-latte catppuccin-mocha" style="--shiki-light:#4c4f69;--shiki-dark:#cdd6f4;--shiki-light-bg:#eff1f5;--shiki-dark-bg:#1e1e2e; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="plaintext"><code><span class="line"><span>&#x3C;?php</span></span>
+<span class="line"><span>    echo "Hello world!";</span></span>
+<span class="line"><span>?></span></span></code></pre>
+<p>预格式化文本：</p>
+<pre class="astro-code astro-code-themes catppuccin-latte catppuccin-mocha" style="--shiki-light:#4c4f69;--shiki-dark:#cdd6f4;--shiki-light-bg:#eff1f5;--shiki-dark-bg:#1e1e2e; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="plaintext"><code><span class="line"><span>| First Header  | Second Header |</span></span>
+<span class="line"><span>| ------------- | ------------- |</span></span>
+<span class="line"><span>| Content Cell  | Content Cell  |</span></span>
+<span class="line"><span>| Content Cell  | Content Cell  |</span></span></code></pre>
+<h4 id="js代码">JS代码　</h4>
+<pre class="astro-code astro-code-themes catppuccin-latte catppuccin-mocha" style="--shiki-light:#4c4f69;--shiki-dark:#cdd6f4;--shiki-light-bg:#eff1f5;--shiki-dark-bg:#1e1e2e; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="javascript"><code><span class="line"><span style="--shiki-light:#8839EF;--shiki-dark:#CBA6F7">function</span><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic"> test</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">()</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2"> {</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">	console</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">.</span><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">log</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">(</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">"Hello world!"</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">)</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">;</span></span>
+<span class="line"><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">}</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> </span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">(</span><span style="--shiki-light:#8839EF;--shiki-dark:#CBA6F7">function</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">(){</span></span>
+<span class="line"><span style="--shiki-light:#8839EF;--shiki-dark:#CBA6F7">    var</span><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic"> box</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5"> =</span><span style="--shiki-light:#8839EF;--shiki-dark:#CBA6F7"> function</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">()</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2"> {</span></span>
+<span class="line"><span style="--shiki-light:#8839EF;--shiki-dark:#CBA6F7">        return</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> box</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">.</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">fn</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">.</span><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">init</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">()</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">;</span></span>
+<span class="line"><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">    };</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#DF8E1D;--shiki-light-font-style:italic;--shiki-dark:#F9E2AF;--shiki-dark-font-style:italic">    box</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">.</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">prototype </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> box</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">.</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">fn </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2"> {</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">        init</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5"> :</span><span style="--shiki-light:#8839EF;--shiki-dark:#CBA6F7"> function</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">(){</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">            console</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">.</span><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">log</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">(</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">'box.init()'</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">)</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#8839EF;--shiki-dark:#CBA6F7">			return</span><span style="--shiki-light:#D20F39;--shiki-dark:#F38BA8"> this</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">;</span></span>
+<span class="line"><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">        },</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">		add</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5"> :</span><span style="--shiki-light:#8839EF;--shiki-dark:#CBA6F7"> function</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">(</span><span style="--shiki-light:#E64553;--shiki-light-font-style:italic;--shiki-dark:#EBA0AC;--shiki-dark-font-style:italic">str</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">)</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2"> {</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">			alert</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">(</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">"add"</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">,</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> str)</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#8839EF;--shiki-dark:#CBA6F7">			return</span><span style="--shiki-light:#D20F39;--shiki-dark:#F38BA8"> this</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">;</span></span>
+<span class="line"><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">		},</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">		remove</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5"> :</span><span style="--shiki-light:#8839EF;--shiki-dark:#CBA6F7"> function</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">(</span><span style="--shiki-light:#E64553;--shiki-light-font-style:italic;--shiki-dark:#EBA0AC;--shiki-dark-font-style:italic">str</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">)</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2"> {</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">			alert</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">(</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">"remove"</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">,</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> str)</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#8839EF;--shiki-dark:#CBA6F7">			return</span><span style="--shiki-light:#D20F39;--shiki-dark:#F38BA8"> this</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">;</span></span>
+<span class="line"><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">		}</span></span>
+<span class="line"><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">    };</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">    </span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">    box</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">.</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">fn</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">.</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">init</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">.</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">prototype </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> box</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">.</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">fn</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">;</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">    </span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">    window</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">.</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">box </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">box</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">;</span></span>
+<span class="line"><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">}</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">)()</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#8839EF;--shiki-dark:#CBA6F7">var</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> testBox </span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic"> box</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">()</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">;</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">testBox</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">.</span><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">add</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">(</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">"jQuery"</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">)</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">.</span><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">remove</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">(</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">"jQuery"</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">)</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">;</span></span></code></pre>
+<h4 id="html-代码-html-codes">HTML 代码 HTML codes</h4>
+<pre class="astro-code astro-code-themes catppuccin-latte catppuccin-mocha" style="--shiki-light:#4c4f69;--shiki-dark:#cdd6f4;--shiki-light-bg:#eff1f5;--shiki-dark-bg:#1e1e2e; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="html"><code><span class="line"><span style="--shiki-light:#8839EF;--shiki-dark:#CBA6F7">&#x3C;!DOCTYPE</span><span style="--shiki-light:#DF8E1D;--shiki-dark:#F9E2AF"> html</span><span style="--shiki-light:#8839EF;--shiki-dark:#CBA6F7">></span></span>
+<span class="line"><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">&#x3C;</span><span style="--shiki-light:#1E66F5;--shiki-dark:#89B4FA">html</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">></span></span>
+<span class="line"><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">    &#x3C;</span><span style="--shiki-light:#1E66F5;--shiki-dark:#89B4FA">head</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">></span></span>
+<span class="line"><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">        &#x3C;</span><span style="--shiki-light:#1E66F5;--shiki-dark:#89B4FA">mate</span><span style="--shiki-light:#DF8E1D;--shiki-dark:#F9E2AF"> charest</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">"utf-8"</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5"> /></span></span>
+<span class="line"><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">        &#x3C;</span><span style="--shiki-light:#1E66F5;--shiki-dark:#89B4FA">meta</span><span style="--shiki-light:#DF8E1D;--shiki-dark:#F9E2AF"> name</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">"keywords"</span><span style="--shiki-light:#DF8E1D;--shiki-dark:#F9E2AF"> content</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">"Editor.md, Markdown, Editor"</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5"> /></span></span>
+<span class="line"><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">        &#x3C;</span><span style="--shiki-light:#1E66F5;--shiki-dark:#89B4FA">title</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">></span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">Hello world!</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">&#x3C;/</span><span style="--shiki-light:#1E66F5;--shiki-dark:#89B4FA">title</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">></span></span>
+<span class="line"><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">        &#x3C;</span><span style="--shiki-light:#1E66F5;--shiki-dark:#89B4FA">style</span><span style="--shiki-light:#DF8E1D;--shiki-dark:#F9E2AF"> type</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">"text/css"</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">></span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-dark:#89B4FA">            body</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">{</span><span style="--shiki-light:#1E66F5;--shiki-dark:#89B4FA">font-size</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">:</span><span style="--shiki-light:#FE640B;--shiki-dark:#FAB387">14</span><span style="--shiki-light:#8839EF;--shiki-dark:#CBA6F7">px</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">;</span><span style="--shiki-light:#1E66F5;--shiki-dark:#89B4FA">color</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">:</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">#</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">444</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">;</span><span style="--shiki-light:#1E66F5;--shiki-dark:#89B4FA">font-family</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">:</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> "Microsoft Yahei"</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">,</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> Tahoma</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">,</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1"> "Hiragino Sans GB"</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">,</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> Arial</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">;</span><span style="--shiki-light:#1E66F5;--shiki-dark:#89B4FA">background</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">:</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">#</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">fff</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">;}</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-dark:#89B4FA">            ul</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">{</span><span style="--shiki-light:#1E66F5;--shiki-dark:#89B4FA">list-style</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">:</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> none</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">;}</span></span>
+<span class="line"><span style="--shiki-light:#1E66F5;--shiki-dark:#89B4FA">            img</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">{</span><span style="--shiki-light:#1E66F5;--shiki-dark:#89B4FA">border</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">:</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">none</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">;</span><span style="--shiki-light:#1E66F5;--shiki-dark:#89B4FA">vertical-align</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">:</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> middle</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">;}</span></span>
+<span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">        &#x3C;</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">/</span><span style="--shiki-light:#1E66F5;--shiki-dark:#89B4FA">style</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">></span></span>
+<span class="line"><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">    &#x3C;/</span><span style="--shiki-light:#1E66F5;--shiki-dark:#89B4FA">head</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">></span></span>
+<span class="line"><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">    &#x3C;</span><span style="--shiki-light:#1E66F5;--shiki-dark:#89B4FA">body</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">></span></span>
+<span class="line"><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">        &#x3C;</span><span style="--shiki-light:#1E66F5;--shiki-dark:#89B4FA">h1</span><span style="--shiki-light:#DF8E1D;--shiki-dark:#F9E2AF"> class</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">"text-xxl"</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">></span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">Hello world!</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">&#x3C;/</span><span style="--shiki-light:#1E66F5;--shiki-dark:#89B4FA">h1</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">></span></span>
+<span class="line"><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">        &#x3C;</span><span style="--shiki-light:#1E66F5;--shiki-dark:#89B4FA">p</span><span style="--shiki-light:#DF8E1D;--shiki-dark:#F9E2AF"> class</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">=</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6E3A1">"text-green"</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">></span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">Plain text</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">&#x3C;/</span><span style="--shiki-light:#1E66F5;--shiki-dark:#89B4FA">p</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">></span></span>
+<span class="line"><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">    &#x3C;/</span><span style="--shiki-light:#1E66F5;--shiki-dark:#89B4FA">body</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">></span></span>
+<span class="line"><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">&#x3C;/</span><span style="--shiki-light:#1E66F5;--shiki-dark:#89B4FA">html</span><span style="--shiki-light:#179299;--shiki-dark:#94E2D5">></span></span></code></pre>
+<h3 id="图片-images">图片 Images</h3>
+<p>Image:</p>
+<p><img src="https://pandao.github.io/editor.md/examples/images/4.jpg" alt=""></p>
+<blockquote>
+<p>Follow your heart.</p>
+</blockquote>
+<p><img src="https://pandao.github.io/editor.md/examples/images/8.jpg" alt=""></p>
+<blockquote>
+<p>图为：厦门白城沙滩</p>
+</blockquote>
+<p>图片加链接 (Image + Link)：</p>
+<p><a href="https://pandao.github.io/editor.md/images/7.jpg" title="李健首张专辑《似水流年》封面"><img src="https://pandao.github.io/editor.md/examples/images/7.jpg" alt=""></a></p>
+<blockquote>
+<p>图为：李健首张专辑《似水流年》封面</p>
+</blockquote>
+<hr>
+<h3 id="列表-lists">列表 Lists</h3>
+<h4 id="无序列表减号unordered-lists-">无序列表（减号）Unordered Lists (-)</h4>
+<ul>
+<li>列表一</li>
+<li>列表二</li>
+<li>列表三</li>
+</ul>
+<h4 id="无序列表星号unordered-lists">无序列表（星号）Unordered Lists (*)</h4>
+<ul>
+<li>列表一</li>
+<li>列表二</li>
+<li>列表三</li>
+</ul>
+<h4 id="无序列表加号和嵌套unordered-lists">无序列表（加号和嵌套）Unordered Lists (+)</h4>
+<ul>
+<li>列表一</li>
+<li>列表二
+<ul>
+<li>列表二-1</li>
+<li>列表二-2</li>
+<li>列表二-3</li>
+</ul>
+</li>
+<li>列表三
+<ul>
+<li>列表一</li>
+<li>列表二</li>
+<li>列表三</li>
+</ul>
+</li>
+</ul>
+<h4 id="有序列表-ordered-lists-">有序列表 Ordered Lists (-)</h4>
+<ol>
+<li>第一行</li>
+<li>第二行</li>
+<li>第三行</li>
+</ol>
+<h4 id="gfm-task-list">GFM task list</h4>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> GFM task list 1</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> GFM task list 2</li>
+<li class="task-list-item"><input type="checkbox" disabled> GFM task list 3
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> GFM task list 3-1</li>
+<li class="task-list-item"><input type="checkbox" disabled> GFM task list 3-2</li>
+<li class="task-list-item"><input type="checkbox" disabled> GFM task list 3-3</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" disabled> GFM task list 4
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> GFM task list 4-1</li>
+<li class="task-list-item"><input type="checkbox" disabled> GFM task list 4-2</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="绘制表格-tables">绘制表格 Tables</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>项目</th><th align="right">价格</th><th align="center">数量</th></tr></thead><tbody><tr><td>计算机</td><td align="right">$1600</td><td align="center">5</td></tr><tr><td>手机</td><td align="right">$12</td><td align="center">12</td></tr><tr><td>管线</td><td align="right">$1</td><td align="center">234</td></tr></tbody></table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>First Header</th><th>Second Header</th></tr></thead><tbody><tr><td>Content Cell</td><td>Content Cell</td></tr><tr><td>Content Cell</td><td>Content Cell</td></tr></tbody></table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>First Header</th><th>Second Header</th></tr></thead><tbody><tr><td>Content Cell</td><td>Content Cell</td></tr><tr><td>Content Cell</td><td>Content Cell</td></tr></tbody></table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Function name</th><th>Description</th></tr></thead><tbody><tr><td><code>help()</code></td><td>Display the help window.</td></tr><tr><td><code>destroy()</code></td><td><strong>Destroy your computer!</strong></td></tr></tbody></table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th align="left">Left-Aligned</th><th align="center">Center Aligned</th><th align="right">Right Aligned</th></tr></thead><tbody><tr><td align="left">col 3 is</td><td align="center">some wordy text</td><td align="right">$1600</td></tr><tr><td align="left">col 2 is</td><td align="center">centered</td><td align="right">$12</td></tr><tr><td align="left">zebra stripes</td><td align="center">are neat</td><td align="right">$1</td></tr></tbody></table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Item</th><th align="right">Value</th></tr></thead><tbody><tr><td>Computer</td><td align="right">$1600</td></tr><tr><td>Phone</td><td align="right">$12</td></tr><tr><td>Pipe</td><td align="right">$1</td></tr></tbody></table>
+<hr>
+<h4 id="特殊符号-html-entities-codes">特殊符号 HTML Entities Codes</h4>
+<p>© &#x26;  ¨ ™ ¡ £
+&#x26; &#x3C; > ¥ € ® ± ¶ § ¦ ¯ « ·</p>
+<p>X² Y³ ¾ ¼  ×  ÷   »</p>
+<p>18ºC  ”  ’</p>
+<p>[========]</p>
+<h3 id="emoji表情-smiley">Emoji表情 :smiley:</h3>
+<blockquote>
+<p>Blockquotes :star:</p>
+</blockquote>
+<h4 id="gfm-task-lists--emoji--fontawesome-icon-emoji--editormd-logo-emoji-editormd-logo-5x">GFM task lists &#x26; Emoji &#x26; fontAwesome icon emoji &#x26; editormd logo emoji :editormd-logo-5x:</h4>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> :smiley: @mentions, :smiley: #refs, <a href="">links</a>, <strong>formatting</strong>, and <del>tags</del> supported :editormd-logo:;</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> list syntax required (any unordered or ordered list supported) :editormd-logo-3x:;</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> [ ] :smiley: this is a complete item :smiley:;</li>
+<li class="task-list-item"><input type="checkbox" disabled> []this is an incomplete item <a href="#">test link</a> :fa-star: @pandao;</li>
+<li class="task-list-item"><input type="checkbox" disabled> [ ]this is an incomplete item :fa-star: :fa-gear:;
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> :smiley: this is an incomplete item <a href="#">test link</a> :fa-star: :fa-gear:;</li>
+<li class="task-list-item"><input type="checkbox" disabled> :smiley: this is  :fa-star: :fa-gear: an incomplete item <a href="#">test link</a>;</li>
+</ul>
+</li>
+</ul>
+<h4 id="反斜杠-escape">反斜杠 Escape</h4>
+<p>*literal asterisks*</p>
+<p>[========]</p>
+<h3 id="科学公式-texkatex">科学公式 TeX(KaTeX)</h3>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>=</mo><mi>m</mi><msup><mi>c</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">E=mc^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord mathnormal">m</span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></p>
+<p>行内的公式<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>=</mo><mi>m</mi><msup><mi>c</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">E=mc^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord mathnormal">m</span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>行内的公式，行内的<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>=</mo><mi>m</mi><msup><mi>c</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">E=mc^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord mathnormal">m</span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>公式。</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>></mo><mi>y</mi></mrow><annotation encoding="application/x-tex">x > y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span></span></p>
+<p><span class="katex-error" title="ParseError: KaTeX parse error: Can&#x27;t use function &#x27;\(&#x27; in math mode at position 1: \̲(̲\sqrt{3x-1}+(1+…" style="color:#cc0000">\(\sqrt{3x-1}+(1+x)^2\)</span></p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sin</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>α</mi><msup><mo stretchy="false">)</mo><mi>θ</mi></msup><mo>=</mo><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></msubsup><mo stretchy="false">(</mo><msup><mi>x</mi><mi>i</mi></msup><mo>+</mo><mi>cos</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\sin(\alpha)^{\theta}=\sum_{i=0}^{n}(x^i + \cos(f))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0991em;vertical-align:-0.25em;"></span><span class="mop">sin</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.1244em;vertical-align:-0.2997em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8043em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8247em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">cos</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mclose">))</span></span></span></span></p>
+<p>多行公式：</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mstyle scriptlevel="0" displaystyle="true"><msup><mrow><mo fence="true">(</mo><mo>∑</mo><mi mathvariant="normal">_</mi><msup><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msup><mi>a</mi><mi mathvariant="normal">_</mi><mi>k</mi><mi>b</mi><mi mathvariant="normal">_</mi><mi>k</mi><mo fence="true">)</mo></mrow><mn>2</mn></msup><mo>≤</mo><mrow><mo fence="true">(</mo><mo>∑</mo><mi mathvariant="normal">_</mi><msup><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msup><mi>a</mi><mi mathvariant="normal">_</mi><msup><mi>k</mi><mn>2</mn></msup><mo fence="true">)</mo></mrow><mrow><mo fence="true">(</mo><mo>∑</mo><mi mathvariant="normal">_</mi><msup><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msup><mi>b</mi><mi mathvariant="normal">_</mi><msup><mi>k</mi><mn>2</mn></msup><mo fence="true">)</mo></mrow></mstyle></mrow><annotation encoding="application/x-tex">\displaystyle
+\left( \sum\_{k=1}^n a\_k b\_k \right)^2
+\leq
+\left( \sum\_{k=1}^n a\_k^2 \right)
+\left( \sum\_{k=1}^n b\_k^2 \right)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.004em;vertical-align:-0.65em;"></span><span class="minner"><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size2">(</span></span><span class="mop op-symbol large-op" style="position:relative;top:0em;">∑</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">1</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7487em;"><span style="top:-3.1473em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span><span class="mord mathnormal">a</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal">kb</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size2">)</span></span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.354em;"><span style="top:-3.6029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.8em;vertical-align:-0.65em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size2">(</span></span><span class="mop op-symbol large-op" style="position:relative;top:0em;">∑</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">1</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7487em;"><span style="top:-3.1473em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span><span class="mord mathnormal">a</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size2">)</span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size2">(</span></span><span class="mop op-symbol large-op" style="position:relative;top:0em;">∑</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">1</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7487em;"><span style="top:-3.1473em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span><span class="mord mathnormal">b</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size2">)</span></span></span></span></span></span></span>
+<pre class="astro-code astro-code-themes catppuccin-latte catppuccin-mocha" style="--shiki-light:#4c4f69;--shiki-dark:#cdd6f4;--shiki-light-bg:#eff1f5;--shiki-dark-bg:#1e1e2e; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="plaintext"><code><span class="line"><span>\displaystyle </span></span>
+<span class="line"><span>    \frac{1}{</span></span>
+<span class="line"><span>        \Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{</span></span>
+<span class="line"><span>        \frac25 \pi}} = 1+\frac{e^{-2\pi}} {1+\frac{e^{-4\pi}} {</span></span>
+<span class="line"><span>        1+\frac{e^{-6\pi}}</span></span>
+<span class="line"><span>        {1+\frac{e^{-8\pi}}</span></span>
+<span class="line"><span>         {1+\cdots} }</span></span>
+<span class="line"><span>        } </span></span>
+<span class="line"><span>    }</span></span></code></pre>
+<pre class="astro-code astro-code-themes catppuccin-latte catppuccin-mocha" style="--shiki-light:#4c4f69;--shiki-dark:#cdd6f4;--shiki-light-bg:#eff1f5;--shiki-dark-bg:#1e1e2e; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="latex"><code><span class="line"><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">f(x) = </span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">\</span><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">int</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">_{-</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">\</span><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">infty</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">}^</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">\</span><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">infty</span></span>
+<span class="line"><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">    \</span><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">hat</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> f(</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">\</span><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">xi</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">)</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">\</span><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">,</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">e^{2 </span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">\</span><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">pi</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> i </span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">\</span><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">xi</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4"> x}</span></span>
+<span class="line"><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">    \</span><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">,</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CDD6F4">d</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">\</span><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#89B4FA;--shiki-dark-font-style:italic">xi</span></span></code></pre>
+<h3 id="分页符-page-break">分页符 Page break</h3>
+<blockquote>
+<p>Print Test: Ctrl + P</p>
+</blockquote>
+<p>[========]</p>
+<h3 id="绘制流程图-flowchart">绘制流程图 Flowchart</h3>
+<pre class="astro-code astro-code-themes catppuccin-latte catppuccin-mocha" style="--shiki-light:#4c4f69;--shiki-dark:#cdd6f4;--shiki-light-bg:#eff1f5;--shiki-dark-bg:#1e1e2e; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="plaintext"><code><span class="line"><span>st=>start: 用户登陆</span></span>
+<span class="line"><span>op=>operation: 登陆操作</span></span>
+<span class="line"><span>cond=>condition: 登陆成功 Yes or No?</span></span>
+<span class="line"><span>e=>end: 进入后台</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>st->op->cond</span></span>
+<span class="line"><span>cond(yes)->e</span></span>
+<span class="line"><span>cond(no)->op</span></span></code></pre>
+<p>[========]</p>
+<h3 id="绘制序列图-sequence-diagram">绘制序列图 Sequence Diagram</h3>
+<pre class="astro-code astro-code-themes catppuccin-latte catppuccin-mocha" style="--shiki-light:#4c4f69;--shiki-dark:#cdd6f4;--shiki-light-bg:#eff1f5;--shiki-dark-bg:#1e1e2e; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Andrew->China: Says Hello </span></span>
+<span class="line"><span>Note right of China: China thinks\nabout it </span></span>
+<span class="line"><span>China-->Andrew: How are you? </span></span>
+<span class="line"><span>Andrew->>China: I am good thanks!</span></span></code></pre>
+<h3 id="end">End</h3>
+<section data-footnotes="" class="footnotes"><h2 class="sr-only" id="footnote-label">Footnotes</h2>
+<ol>
+<li id="user-content-fn-1">
+<p>Big note. <a href="#user-content-fnref-1" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a></p>
+</li>
+</ol>
+</section> </article> <hr class="my-8 border-dashed">  <ul class="mt-4 mb-8 sm:my-8"> <li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/userscript/" class="relative pe-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 focus-visible:no-underline text-sm" data-astro-transition-scope="astro-36ssibgs-2"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -me-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>userscript</span> </a> </li><li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/javascript/" class="relative pe-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 focus-visible:no-underline text-sm" data-astro-transition-scope="astro-36ssibgs-3"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -me-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>javascript</span> </a> </li> </ul> <div id="btt-btn-container" class="fixed end-4 bottom-8 z-50 md:sticky md:end-auto md:float-end md:me-1 translate-y-14 opacity-0 transition duration-500"> <button data-button="back-to-top" class="group relative bg-background px-2 py-1 size-14 rounded-full shadow-xl md:h-8 md:w-fit md:rounded-md md:shadow-none md:focus-visible:rounded-none md:bg-background/35 md:bg-clip-padding md:backdrop-blur-lg"> <span id="progress-indicator" class="absolute inset-0 -z-10 block size-14 scale-110 rounded-full bg-transparent md:hidden md:h-8 md:rounded-md"></span> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block rotate-90 md:hidden"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <span class="sr-only text-sm group-hover:text-accent md:not-sr-only"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 5l0 14" /><path d="M16 9l-4 -4" /><path d="M8 9l4 -4" /></svg>
+Back To Top
+</span> </button> </div> <script data-astro-rerun>
+  /** Scrolls the document to the top when
+   * the "Back to Top" button is clicked. */
+  function backToTop() {
+    const rootElement = document.documentElement;
+    const btnContainer = document.querySelector("#btt-btn-container");
+    const backToTopBtn = document.querySelector("[data-button='back-to-top']");
+    const progressIndicator = document.querySelector("#progress-indicator");
+
+    if (!rootElement || !btnContainer || !backToTopBtn || !progressIndicator)
+      return;
+
+    // Attach click event handler for back-to-top button
+    backToTopBtn.addEventListener("click", () => {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    });
+
+    // Handle button visibility according to scroll position
+    let lastVisible = null;
+    function handleScroll() {
+      const scrollTotal = rootElement.scrollHeight - rootElement.clientHeight;
+      const scrollTop = rootElement.scrollTop;
+      const scrollPercent = Math.floor((scrollTop / scrollTotal) * 100);
+
+      progressIndicator.style.setProperty(
+        "background-image",
+        `conic-gradient(var(--accent), var(--accent) ${scrollPercent}%, transparent ${scrollPercent}%)`
+      );
+
+      const isVisible = scrollTop / scrollTotal > 0.3;
+
+      if (isVisible !== lastVisible) {
+        btnContainer.classList.toggle("opacity-100", isVisible);
+        btnContainer.classList.toggle("translate-y-0", isVisible);
+        btnContainer.classList.toggle("opacity-0", !isVisible);
+        btnContainer.classList.toggle("translate-y-14", !isVisible);
+        lastVisible = isVisible;
+      }
+    }
+
+    let ticking = false;
+    document.addEventListener("scroll", () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+  }
+  backToTop();
+</script> <div class="flex flex-none flex-col items-center justify-center gap-1 md:items-start"><span class="italic">Share this post on:</span><div class="text-center"><a href="https://wa.me/?text=https://aurora0x27.github.io/posts/render-markdown/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via WhatsApp"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" /><path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" /></svg><span class="sr-only">Share this post via WhatsApp</span></a><a href="https://www.facebook.com/sharer.php?u=https://aurora0x27.github.io/posts/render-markdown/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Facebook"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg><span class="sr-only">Share this post on Facebook</span></a><a href="https://x.com/intent/post?url=https://aurora0x27.github.io/posts/render-markdown/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on X"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg><span class="sr-only">Share this post on X</span></a><a href="https://t.me/share/url?url=https://aurora0x27.github.io/posts/render-markdown/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via Telegram"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg><span class="sr-only">Share this post via Telegram</span></a><a href="https://pinterest.com/pin/create/button/?url=https://aurora0x27.github.io/posts/render-markdown/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Pinterest"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 20l4 -9" /><path d="M10.7 14c.437 1.263 1.43 2 2.55 2c2.071 0 3.75 -1.554 3.75 -4a5 5 0 1 0 -9.7 1.7" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg><span class="sr-only">Share this post on Pinterest</span></a><a href="mailto:?subject=See%20this%20post&#38;body=https://aurora0x27.github.io/posts/render-markdown/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via email"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg><span class="sr-only">Share this post via email</span></a></div></div> <!--
+    <Comment />
+    --> <hr class="my-6 border-dashed"> <!-- Previous/Next Post Buttons --> <div data-pagefind-ignore class="grid grid-cols-1 gap-6 sm:grid-cols-2">  <a href="/posts/dotfilesbootstrap" class="flex w-full justify-end gap-1 text-end hover:opacity-75 sm:col-start-2"> <div> <span>Next Post</span> <div class="text-sm text-accent/85">點文件管理二三事</div> </div> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none rtl:rotate-180"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 6l6 6l-6 6" /></svg> </a> </div> </main> <!--
+TODO: 添加 Icons
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/js/fontawesome.min.js"
+></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/js/brands.min.js"
+></script>
+--><footer class="w-full text-center text-sm text-foreground mt-auto"> <div class="mx-auto max-w-app px-4"> <hr class="border-border" aria-hidden="true"> </div> <div class="flex flex-col items-center justify-center gap-2 py-6 sm:py-4"> <div> 2025 — Content on this site is licensed under
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener noreferrer" class="ml-1 text-foreground underline">
+CC BY-NC-SA 4.0
+</a> </div> <div></div> </div> </footer>  </body></html> <script data-astro-rerun>
+  /** Create a progress indicator
+   *  at the top */
+  function createProgressBar() {
+    // Create the main container div
+    const progressContainer = document.createElement("div");
+    progressContainer.className =
+      "progress-container fixed top-0 z-10 h-1 w-full bg-background";
+
+    // Create the progress bar div
+    const progressBar = document.createElement("div");
+    progressBar.className = "progress-bar h-1 w-0 bg-accent";
+    progressBar.id = "myBar";
+
+    // Append the progress bar to the progress container
+    progressContainer.appendChild(progressBar);
+
+    // Append the progress container to the document body or any other desired parent element
+    document.body.appendChild(progressContainer);
+  }
+  createProgressBar();
+
+  /** Update the progress bar
+   *  when user scrolls */
+  function updateScrollProgress() {
+    document.addEventListener("scroll", () => {
+      const winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      if (document) {
+        const myBar = document.getElementById("myBar");
+        if (myBar) {
+          myBar.style.width = scrolled + "%";
+        }
+      }
+    });
+  }
+  updateScrollProgress();
+
+  /** Attaches links to headings in the document,
+   *  allowing sharing of sections easily */
+  function addHeadingLinks() {
+    const headings = Array.from(
+      document.querySelectorAll("h2, h3, h4, h5, h6")
+    );
+    for (const heading of headings) {
+      heading.classList.add("group");
+      const link = document.createElement("a");
+      link.className =
+        "heading-link ms-2 no-underline opacity-75 md:opacity-0 md:group-hover:opacity-100 md:focus:opacity-100";
+      link.href = "#" + heading.id;
+
+      const span = document.createElement("span");
+      span.ariaHidden = "true";
+      span.innerText = "#";
+      link.appendChild(span);
+      heading.appendChild(link);
+    }
+  }
+  addHeadingLinks();
+
+  /** Attaches copy buttons to code blocks in the document,
+   * allowing users to copy code easily. */
+  function attachCopyButtons() {
+    const copyButtonLabel = "Copy";
+    const codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+    for (const codeBlock of codeBlocks) {
+      const wrapper = document.createElement("div");
+      wrapper.style.position = "relative";
+
+      // Check if --file-name-offset custom property exists
+      const computedStyle = getComputedStyle(codeBlock);
+      const hasFileNameOffset =
+        computedStyle.getPropertyValue("--file-name-offset").trim() !== "";
+
+      // Determine the top positioning class
+      const topClass = hasFileNameOffset
+        ? "top-(--file-name-offset)"
+        : "-top-3";
+
+      const copyButton = document.createElement("button");
+      copyButton.className = `copy-code absolute end-3 ${topClass} rounded bg-muted border border-muted px-2 py-1 text-xs leading-4 text-foreground font-medium`;
+      copyButton.innerHTML = copyButtonLabel;
+      codeBlock.setAttribute("tabindex", "0");
+      codeBlock.appendChild(copyButton);
+
+      // wrap codebock with relative parent element
+      codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
+      wrapper.appendChild(codeBlock);
+
+      copyButton.addEventListener("click", async () => {
+        await copyCode(codeBlock, copyButton);
+      });
+    }
+
+    async function copyCode(block, button) {
+      const code = block.querySelector("code");
+      const text = code?.innerText;
+
+      await navigator.clipboard.writeText(text ?? "");
+
+      // visual feedback that task is completed
+      button.innerText = "Copied";
+
+      setTimeout(() => {
+        button.innerText = copyButtonLabel;
+      }, 700);
+    }
+  }
+  attachCopyButtons();
+
+  /* Go to page start after page swap */
+  document.addEventListener("astro:after-swap", () =>
+    window.scrollTo({ left: 0, top: 0, behavior: "instant" })
+  );
+</script>
