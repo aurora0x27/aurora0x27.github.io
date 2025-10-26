@@ -200,7 +200,7 @@ Table of Contents
 <span class="line"><span style="--shiki-light:#D20F39;--shiki-light-font-style:italic;--shiki-dark:#F38BA8;--shiki-dark-font-style:italic">    :</span><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">;</span></span>
 <span class="line"><span style="--shiki-light:#7C7F93;--shiki-dark:#9399B2">}</span></span></code></pre>
 <p>這個空的模板定義了相關的函數。這裏的依賴可以是配置文件對應的程序，例如 nvim 的依賴是 nvim，在 <code>install_dep</code> 函數中使用
-系統套件管理員安裝或拉取源碼編譯。</p>
+系统包管理器安裝或拉取源碼編譯。</p>
 <p><strong>注意，在編寫安裝步驟的時候實際產生影響的安裝命令都需要在前面使用<code>run</code>來包裝。這保證了在<code>dry-run</code>模式下命令不會被執行，
 並能被監控。有重新導向或者管道的命令需要使用引號包裹。這是實現上的缺陷導致的。我沒有找到完美的命令執行器(也許需要一個含有
 控制流的類似<code>makefile</code>的dsl出現才行吧(笑</strong></p>
@@ -208,8 +208,7 @@ Table of Contents
 <ul>
 <li><code>$rootdir</code></li>
 </ul>
-<p>請原樣翻譯下面的文字到繁體中文, 不要帶有港臺方言.
-代表整个 dotfiles 仓库的根目录绝对路径, 在编写涉及链接或者移动文件时, 最好使用<code>$rootdir</code>为头生成绝对目录.</p>
+<p>代表整个 dotfiles 仓库的根目录绝对路径, 在编写涉及链接或者移动文件时, 最好使用<code>$rootdir</code>为头生成绝对目录.</p>
 <ul>
 <li><code>$sys_id</code></li>
 </ul>
